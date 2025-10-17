@@ -430,6 +430,37 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiChannelChannel extends Struct.CollectionTypeSchema {
+  collectionName: 'channels';
+  info: {
+    displayName: 'Channel';
+    pluralName: 'channels';
+    singularName: 'channel';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    account_id_crm: Schema.Attribute.Integer;
+    apikey_bot_crm: Schema.Attribute.String;
+    apikey_user_crm: Schema.Attribute.String;
+    chatbot: Schema.Attribute.Relation<'oneToOne', 'api::chatbot.chatbot'>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::channel.channel'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiChatbotChatbot extends Struct.CollectionTypeSchema {
   collectionName: 'chatbots';
   info: {
@@ -443,6 +474,8 @@ export interface ApiChatbotChatbot extends Struct.CollectionTypeSchema {
   attributes: {
     available_emojis: Schema.Attribute.String;
     ban_words: Schema.Attribute.JSON;
+    channel: Schema.Attribute.Relation<'oneToOne', 'api::channel.channel'>;
+    chatbot_name: Schema.Attribute.String;
     company_description: Schema.Attribute.Text;
     company_name: Schema.Attribute.String;
     confirmation_message: Schema.Attribute.Text;
@@ -478,15 +511,15 @@ export interface ApiChatbotChatbot extends Struct.CollectionTypeSchema {
       'api::chatbot.chatbot'
     > &
       Schema.Attribute.Private;
-    name: Schema.Attribute.String;
+    payments: Schema.Attribute.Relation<'oneToMany', 'api::payment.payment'>;
     products: Schema.Attribute.Relation<'oneToMany', 'api::product.product'>;
     publishedAt: Schema.Attribute.DateTime;
-    sale_communication: Schema.Attribute.String;
-    signs: Schema.Attribute.Boolean;
-    style: Schema.Attribute.Enumeration<
+    response_length: Schema.Attribute.Enumeration<
       ['Very concise', 'Concise', 'Balance', 'Detailed', 'Very detailed']
     >;
-    style_communication: Schema.Attribute.String;
+    sale_communication: Schema.Attribute.String;
+    signs: Schema.Attribute.Boolean;
+    style_sale: Schema.Attribute.String;
     target: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -521,6 +554,39 @@ export interface ApiFaqFaq extends Struct.CollectionTypeSchema {
     publishedAt: Schema.Attribute.DateTime;
     question: Schema.Attribute.String;
     response: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiPaymentPayment extends Struct.CollectionTypeSchema {
+  collectionName: 'payments';
+  info: {
+    displayName: 'Payment';
+    pluralName: 'payments';
+    singularName: 'payment';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    chatbot: Schema.Attribute.Relation<'manyToOne', 'api::chatbot.chatbot'>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    instructions: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::payment.payment'
+    > &
+      Schema.Attribute.Private;
+    name: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    type: Schema.Attribute.Enumeration<
+      ['Billeteras virtuales', 'Transferencia bancaria']
+    >;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1040,11 +1106,13 @@ export interface PluginUsersPermissionsUser
       'plugin::users-permissions.user'
     > &
       Schema.Attribute.Private;
+    name: Schema.Attribute.String;
     password: Schema.Attribute.Password &
       Schema.Attribute.Private &
       Schema.Attribute.SetMinMaxLength<{
         minLength: 6;
       }>;
+    phone: Schema.Attribute.String;
     provider: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
     resetPasswordToken: Schema.Attribute.String & Schema.Attribute.Private;
@@ -1075,8 +1143,10 @@ declare module '@strapi/strapi' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
+      'api::channel.channel': ApiChannelChannel;
       'api::chatbot.chatbot': ApiChatbotChatbot;
       'api::faq.faq': ApiFaqFaq;
+      'api::payment.payment': ApiPaymentPayment;
       'api::product.product': ApiProductProduct;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;

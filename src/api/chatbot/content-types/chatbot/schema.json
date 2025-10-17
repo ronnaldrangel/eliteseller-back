@@ -11,20 +11,8 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "name": {
+    "chatbot_name": {
       "type": "string"
-    },
-    "users_permissions_user": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "plugin::users-permissions.user",
-      "inversedBy": "chatbots"
-    },
-    "products": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::product.product",
-      "mappedBy": "chatbot"
     },
     "company_name": {
       "type": "string"
@@ -59,17 +47,27 @@
     "company_description": {
       "type": "text"
     },
-    "style_communication": {
-      "type": "string"
-    },
-    "sale_communication": {
+    "target": {
       "type": "string"
     },
     "instructions": {
       "type": "string"
     },
-    "target": {
+    "sale_communication": {
       "type": "string"
+    },
+    "style_sale": {
+      "type": "string"
+    },
+    "response_length": {
+      "type": "enumeration",
+      "enum": [
+        "Very concise",
+        "Concise",
+        "Balance",
+        "Detailed",
+        "Very detailed"
+      ]
     },
     "emoji": {
       "type": "boolean"
@@ -83,16 +81,6 @@
     "available_emojis": {
       "type": "string"
     },
-    "style": {
-      "type": "enumeration",
-      "enum": [
-        "Very concise",
-        "Concise",
-        "Balance",
-        "Detailed",
-        "Very detailed"
-      ]
-    },
     "welcome_message": {
       "type": "text"
     },
@@ -102,11 +90,35 @@
     "human_derivation_message": {
       "type": "text"
     },
+    "channel": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::channel.channel",
+      "mappedBy": "chatbot"
+    },
     "faqs": {
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::faq.faq",
       "mappedBy": "chatbot"
+    },
+    "payments": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::payment.payment",
+      "mappedBy": "chatbot"
+    },
+    "products": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::product.product",
+      "mappedBy": "chatbot"
+    },
+    "users_permissions_user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "chatbots"
     }
   }
 }
