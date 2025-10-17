@@ -19,4 +19,15 @@ module.exports = ({ env }) => ({
     },
   },
   // ...
+  // Otras configuraciones de plugins
+  "users-permissions": {
+    config: {
+      register: {
+        allowedFields: [
+          "name",   // Permitir el campo 'name'
+          "phone"   // Permitir el campo 'phone'
+        ],
+      },
+    },
+  },
 });
