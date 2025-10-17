@@ -1,0 +1,112 @@
+{
+  "kind": "collectionType",
+  "collectionName": "chatbots",
+  "info": {
+    "singularName": "chatbot",
+    "pluralName": "chatbots",
+    "displayName": "Chatbot"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "users_permissions_user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "chatbots"
+    },
+    "products": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::product.product",
+      "mappedBy": "chatbot"
+    },
+    "company_name": {
+      "type": "string"
+    },
+    "gender": {
+      "type": "enumeration",
+      "enum": [
+        "male",
+        "female",
+        "neutral"
+      ]
+    },
+    "country": {
+      "type": "enumeration",
+      "enum": [
+        "México",
+        "Perú",
+        "Colombia",
+        "Chile",
+        "Argentina",
+        "Brasil",
+        "Venezuela",
+        "Bolivia",
+        "Ecuador",
+        "Paraguay",
+        "Uruguay",
+        "Panamá",
+        "Costa Rica",
+        "Global"
+      ]
+    },
+    "company_description": {
+      "type": "text"
+    },
+    "style_communication": {
+      "type": "string"
+    },
+    "sale_communication": {
+      "type": "string"
+    },
+    "instructions": {
+      "type": "string"
+    },
+    "target": {
+      "type": "string"
+    },
+    "emoji": {
+      "type": "boolean"
+    },
+    "signs": {
+      "type": "boolean"
+    },
+    "ban_words": {
+      "type": "json"
+    },
+    "available_emojis": {
+      "type": "string"
+    },
+    "style": {
+      "type": "enumeration",
+      "enum": [
+        "Very concise",
+        "Concise",
+        "Balance",
+        "Detailed",
+        "Very detailed"
+      ]
+    },
+    "welcome_message": {
+      "type": "text"
+    },
+    "confirmation_message": {
+      "type": "text"
+    },
+    "human_derivation_message": {
+      "type": "text"
+    },
+    "faqs": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::faq.faq",
+      "mappedBy": "chatbot"
+    }
+  }
+}
