@@ -53,7 +53,7 @@
     "instructions": {
       "type": "string"
     },
-    "sale_communication": {
+    "style_communication": {
       "type": "string"
     },
     "style_sale": {
