@@ -517,8 +517,8 @@ export interface ApiChatbotChatbot extends Struct.CollectionTypeSchema {
     response_length: Schema.Attribute.Enumeration<
       ['Very concise', 'Concise', 'Balance', 'Detailed', 'Very detailed']
     >;
-    sale_communication: Schema.Attribute.String;
     signs: Schema.Attribute.Boolean;
+    style_communication: Schema.Attribute.String;
     style_sale: Schema.Attribute.String;
     target: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
