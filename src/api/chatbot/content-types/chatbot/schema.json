@@ -28,8 +28,8 @@
     "country": {
       "type": "enumeration",
       "enum": [
-        "México",
-        "Perú",
+        "Mexico",
+        "Peru",
         "Colombia",
         "Chile",
         "Argentina",
@@ -39,7 +39,7 @@
         "Ecuador",
         "Paraguay",
         "Uruguay",
-        "Panamá",
+        "Panama",
         "Costa Rica",
         "Global"
       ]

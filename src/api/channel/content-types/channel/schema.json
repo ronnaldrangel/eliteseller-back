@@ -25,6 +25,9 @@
       "relation": "oneToOne",
       "target": "api::chatbot.chatbot",
       "inversedBy": "channel"
+    },
+    "session_name": {
+      "type": "string"
     }
   }
 }

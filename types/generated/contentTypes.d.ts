@@ -455,6 +455,7 @@ export interface ApiChannelChannel extends Struct.CollectionTypeSchema {
     > &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
+    session_name: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -481,8 +482,8 @@ export interface ApiChatbotChatbot extends Struct.CollectionTypeSchema {
     confirmation_message: Schema.Attribute.Text;
     country: Schema.Attribute.Enumeration<
       [
-        'M\u00E9xico',
-        'Per\u00FA',
+        'Mexico',
+        'Peru',
         'Colombia',
         'Chile',
         'Argentina',
@@ -492,7 +493,7 @@ export interface ApiChatbotChatbot extends Struct.CollectionTypeSchema {
         'Ecuador',
         'Paraguay',
         'Uruguay',
-        'Panam\u00E1',
+        'Panama',
         'Costa Rica',
         'Global',
       ]

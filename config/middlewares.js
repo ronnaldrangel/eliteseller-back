@@ -27,7 +27,7 @@ module.exports = [
       },
     },
   },
-  'strapi::security',
+  // 'strapi::security',  // Eliminado para evitar sobrescribir la configuración anterior
   'strapi::cors',
   'strapi::poweredBy',
   'strapi::query',
