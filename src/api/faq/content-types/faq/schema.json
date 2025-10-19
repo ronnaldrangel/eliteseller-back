@@ -20,9 +20,12 @@
     "category": {
       "type": "enumeration",
       "enum": [
-        "Producto",
-        "Compra",
-        "Otro"
+        "Productos",
+        "Horarios",
+        "Envíos",
+        "Pagos",
+        "Devoluciones",
+        "Otros"
       ]
     },
     "chatbot": {

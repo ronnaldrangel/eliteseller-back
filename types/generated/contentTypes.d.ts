@@ -543,7 +543,9 @@ export interface ApiFaqFaq extends Struct.CollectionTypeSchema {
     draftAndPublish: false;
   };
   attributes: {
-    category: Schema.Attribute.Enumeration<['Producto', 'Compra', 'Otro']>;
+    category: Schema.Attribute.Enumeration<
+      ['Productos', 'Horarios', 'Env\u00EDos', 'Pagos', 'Devoluciones', 'Otros']
+    >;
     chatbot: Schema.Attribute.Relation<'manyToOne', 'api::chatbot.chatbot'>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
