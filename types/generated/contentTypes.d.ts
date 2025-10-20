@@ -455,7 +455,9 @@ export interface ApiChannelChannel extends Struct.CollectionTypeSchema {
     > &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
+    session_apikey: Schema.Attribute.String;
     session_name: Schema.Attribute.String;
+    session_url: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;

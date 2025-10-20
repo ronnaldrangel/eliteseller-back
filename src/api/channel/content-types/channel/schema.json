@@ -28,6 +28,12 @@
     },
     "session_name": {
       "type": "string"
+    },
+    "session_apikey": {
+      "type": "string"
+    },
+    "session_url": {
+      "type": "string"
     }
   }
 }
