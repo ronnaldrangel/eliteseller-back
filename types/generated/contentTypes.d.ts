@@ -457,6 +457,7 @@ export interface ApiAccountAccount extends Struct.CollectionTypeSchema {
     > &
       Schema.Attribute.Private;
     name: Schema.Attribute.String;
+    profile: Schema.Attribute.Relation<'manyToOne', 'api::profile.profile'>;
     publishedAt: Schema.Attribute.DateTime;
     session_apikey: Schema.Attribute.String;
     session_name: Schema.Attribute.String;
@@ -481,12 +482,17 @@ export interface ApiChatbotChatbot extends Struct.CollectionTypeSchema {
   };
   attributes: {
     account: Schema.Attribute.Relation<'oneToOne', 'api::account.account'>;
-    available_emojis: Schema.Attribute.String;
+    available_emojis: Schema.Attribute.String &
+      Schema.Attribute.DefaultTo<'\uD83D\uDE42\uD83D\uDC4D\uD83C\uDF89'>;
     ban_words: Schema.Attribute.JSON;
-    chatbot_name: Schema.Attribute.String;
-    company_description: Schema.Attribute.Text;
-    company_name: Schema.Attribute.String;
-    confirmation_message: Schema.Attribute.Text;
+    chatbot_name: Schema.Attribute.String &
+      Schema.Attribute.DefaultTo<'EliteSeller'>;
+    company_description: Schema.Attribute.Text &
+      Schema.Attribute.DefaultTo<'Tienda gen\u00E9rica de productos variados.'>;
+    company_name: Schema.Attribute.String &
+      Schema.Attribute.DefaultTo<'EliteShop'>;
+    confirmation_message: Schema.Attribute.Text &
+      Schema.Attribute.DefaultTo<'\u00A1Gracias por tu compra! Estamos procesando tu pedido y pronto recibir\u00E1s la confirmaci\u00F3n.'>;
     country: Schema.Attribute.Enumeration<
       [
         'Mexico',
@@ -504,15 +510,19 @@ export interface ApiChatbotChatbot extends Struct.CollectionTypeSchema {
         'Costa Rica',
         'Global',
       ]
-    >;
+    > &
+      Schema.Attribute.DefaultTo<'Peru'>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    emoji: Schema.Attribute.Boolean;
+    emoji: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<true>;
     faqs: Schema.Attribute.Relation<'oneToMany', 'api::faq.faq'>;
-    gender: Schema.Attribute.Enumeration<['male', 'female', 'neutral']>;
-    human_derivation_message: Schema.Attribute.Text;
-    instructions: Schema.Attribute.String;
+    gender: Schema.Attribute.Enumeration<['male', 'female', 'neutral']> &
+      Schema.Attribute.DefaultTo<'male'>;
+    human_derivation_message: Schema.Attribute.Text &
+      Schema.Attribute.DefaultTo<'Te conectar\u00E9 con un agente humano para brindarte m\u00E1s ayuda.'>;
+    instructions: Schema.Attribute.String &
+      Schema.Attribute.DefaultTo<'general product support'>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -524,11 +534,15 @@ export interface ApiChatbotChatbot extends Struct.CollectionTypeSchema {
     publishedAt: Schema.Attribute.DateTime;
     response_length: Schema.Attribute.Enumeration<
       ['Very concise', 'Concise', 'Balance', 'Detailed', 'Very detailed']
-    >;
-    signs: Schema.Attribute.Boolean;
-    style_communication: Schema.Attribute.String;
-    style_sale: Schema.Attribute.String;
-    target: Schema.Attribute.String;
+    > &
+      Schema.Attribute.DefaultTo<'Balance'>;
+    signs: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<true>;
+    style_communication: Schema.Attribute.String &
+      Schema.Attribute.DefaultTo<'friendly, concise, and clear'>;
+    style_sale: Schema.Attribute.String &
+      Schema.Attribute.DefaultTo<'consultative'>;
+    target: Schema.Attribute.String &
+      Schema.Attribute.DefaultTo<'broad consumer audience'>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -536,7 +550,8 @@ export interface ApiChatbotChatbot extends Struct.CollectionTypeSchema {
       'manyToOne',
       'plugin::users-permissions.user'
     >;
-    welcome_message: Schema.Attribute.Text;
+    welcome_message: Schema.Attribute.Text &
+      Schema.Attribute.DefaultTo<'\u00A1Hola! Soy EliteSeller. \u00BFEn qu\u00E9 puedo ayudarte hoy?'>;
   };
 }
 
@@ -654,6 +669,7 @@ export interface ApiProfileProfile extends Struct.CollectionTypeSchema {
   attributes: {
     access_token: Schema.Attribute.String;
     account_id: Schema.Attribute.Integer;
+    accounts: Schema.Attribute.Relation<'oneToMany', 'api::account.account'>;
     available_name: Schema.Attribute.String;
     avatar_url: Schema.Attribute.String;
     confirmed: Schema.Attribute.Boolean;

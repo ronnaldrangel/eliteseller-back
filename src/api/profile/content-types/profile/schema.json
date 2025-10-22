@@ -58,6 +58,12 @@
       "relation": "oneToOne",
       "target": "plugin::users-permissions.user",
       "mappedBy": "profile"
+    },
+    "accounts": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::account.account",
+      "mappedBy": "profile"
     }
   }
 }

@@ -12,13 +12,16 @@
   "pluginOptions": {},
   "attributes": {
     "chatbot_name": {
-      "type": "string"
+      "type": "string",
+      "default": "EliteSeller"
     },
     "company_name": {
-      "type": "string"
+      "type": "string",
+      "default": "EliteShop"
     },
     "gender": {
       "type": "enumeration",
+      "default": "male",
       "enum": [
         "male",
         "female",
@@ -27,6 +30,7 @@
     },
     "country": {
       "type": "enumeration",
+      "default": "Peru",
       "enum": [
         "Mexico",
         "Peru",
@@ -45,22 +49,28 @@
       ]
     },
     "company_description": {
-      "type": "text"
+      "type": "text",
+      "default": "Tienda genérica de productos variados."
     },
     "target": {
-      "type": "string"
+      "type": "string",
+      "default": "broad consumer audience"
     },
     "instructions": {
-      "type": "string"
+      "type": "string",
+      "default": "general product support"
     },
     "style_communication": {
-      "type": "string"
+      "type": "string",
+      "default": "friendly, concise, and clear"
     },
     "style_sale": {
-      "type": "string"
+      "type": "string",
+      "default": "consultative"
     },
     "response_length": {
       "type": "enumeration",
+      "default": "Balance",
       "enum": [
         "Very concise",
         "Concise",
@@ -70,25 +80,31 @@
       ]
     },
     "emoji": {
-      "type": "boolean"
+      "type": "boolean",
+      "default": true
     },
     "signs": {
-      "type": "boolean"
+      "type": "boolean",
+      "default": true
     },
     "ban_words": {
       "type": "json"
     },
     "available_emojis": {
-      "type": "string"
+      "type": "string",
+      "default": "🙂👍🎉"
     },
     "welcome_message": {
-      "type": "text"
+      "type": "text",
+      "default": "¡Hola! Soy EliteSeller. ¿En qué puedo ayudarte hoy?"
     },
     "confirmation_message": {
-      "type": "text"
+      "type": "text",
+      "default": "¡Gracias por tu compra! Estamos procesando tu pedido y pronto recibirás la confirmación."
     },
     "human_derivation_message": {
-      "type": "text"
+      "type": "text",
+      "default": "Te conectaré con un agente humano para brindarte más ayuda."
     },
     "faqs": {
       "type": "relation",
