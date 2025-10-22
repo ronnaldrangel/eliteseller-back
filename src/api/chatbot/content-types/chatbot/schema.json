@@ -119,6 +119,12 @@
       "relation": "manyToOne",
       "target": "plugin::users-permissions.user",
       "inversedBy": "chatbots"
+    },
+    "account": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::account.account",
+      "mappedBy": "chatbot"
     }
   }
 }

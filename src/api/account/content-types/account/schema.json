@@ -1,0 +1,54 @@
+{
+  "kind": "collectionType",
+  "collectionName": "accounts",
+  "info": {
+    "singularName": "account",
+    "pluralName": "accounts",
+    "displayName": "Account"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "id_account": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "locale_account": {
+      "type": "string"
+    },
+    "domain": {
+      "type": "string"
+    },
+    "support_email": {
+      "type": "string"
+    },
+    "status_account": {
+      "type": "string"
+    },
+    "limits": {
+      "type": "json"
+    },
+    "custom_attributes": {
+      "type": "json"
+    },
+    "chatbot": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::chatbot.chatbot",
+      "inversedBy": "account"
+    },
+    "session_name": {
+      "type": "string"
+    },
+    "session_apikey": {
+      "type": "string"
+    },
+    "session_url": {
+      "type": "string"
+    }
+  }
+}
