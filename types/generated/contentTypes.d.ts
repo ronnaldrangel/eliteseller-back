@@ -438,7 +438,7 @@ export interface ApiAccountAccount extends Struct.CollectionTypeSchema {
     singularName: 'account';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     chatbot: Schema.Attribute.Relation<'oneToOne', 'api::chatbot.chatbot'>;
@@ -684,7 +684,7 @@ export interface ApiProfileProfile extends Struct.CollectionTypeSchema {
     singularName: 'profile';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     access_token: Schema.Attribute.String;
