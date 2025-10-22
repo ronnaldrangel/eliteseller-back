@@ -90,12 +90,6 @@
     "human_derivation_message": {
       "type": "text"
     },
-    "channel": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::channel.channel",
-      "mappedBy": "chatbot"
-    },
     "faqs": {
       "type": "relation",
       "relation": "oneToMany",

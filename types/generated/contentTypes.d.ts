@@ -469,40 +469,6 @@ export interface ApiAccountAccount extends Struct.CollectionTypeSchema {
   };
 }
 
-export interface ApiChannelChannel extends Struct.CollectionTypeSchema {
-  collectionName: 'channels';
-  info: {
-    displayName: 'Channel';
-    pluralName: 'channels';
-    singularName: 'channel';
-  };
-  options: {
-    draftAndPublish: false;
-  };
-  attributes: {
-    account_id_crm: Schema.Attribute.Integer;
-    apikey_bot_crm: Schema.Attribute.String;
-    apikey_user_crm: Schema.Attribute.String;
-    chatbot: Schema.Attribute.Relation<'oneToOne', 'api::chatbot.chatbot'>;
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::channel.channel'
-    > &
-      Schema.Attribute.Private;
-    publishedAt: Schema.Attribute.DateTime;
-    session_apikey: Schema.Attribute.String;
-    session_name: Schema.Attribute.String;
-    session_url: Schema.Attribute.String;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-  };
-}
-
 export interface ApiChatbotChatbot extends Struct.CollectionTypeSchema {
   collectionName: 'chatbots';
   info: {
@@ -517,7 +483,6 @@ export interface ApiChatbotChatbot extends Struct.CollectionTypeSchema {
     account: Schema.Attribute.Relation<'oneToOne', 'api::account.account'>;
     available_emojis: Schema.Attribute.String;
     ban_words: Schema.Attribute.JSON;
-    channel: Schema.Attribute.Relation<'oneToOne', 'api::channel.channel'>;
     chatbot_name: Schema.Attribute.String;
     company_description: Schema.Attribute.Text;
     company_name: Schema.Attribute.String;
@@ -1235,7 +1200,6 @@ declare module '@strapi/strapi' {
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
       'api::account.account': ApiAccountAccount;
-      'api::channel.channel': ApiChannelChannel;
       'api::chatbot.chatbot': ApiChatbotChatbot;
       'api::faq.faq': ApiFaqFaq;
       'api::payment.payment': ApiPaymentPayment;
