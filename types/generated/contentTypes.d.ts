@@ -457,7 +457,6 @@ export interface ApiAccountAccount extends Struct.CollectionTypeSchema {
     > &
       Schema.Attribute.Private;
     name: Schema.Attribute.String;
-    profile: Schema.Attribute.Relation<'manyToOne', 'api::profile.profile'>;
     publishedAt: Schema.Attribute.DateTime;
     session_apikey: Schema.Attribute.String;
     session_name: Schema.Attribute.String;
@@ -653,52 +652,6 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-  };
-}
-
-export interface ApiProfileProfile extends Struct.CollectionTypeSchema {
-  collectionName: 'profiles';
-  info: {
-    displayName: 'Profile';
-    pluralName: 'profiles';
-    singularName: 'profile';
-  };
-  options: {
-    draftAndPublish: false;
-  };
-  attributes: {
-    access_token: Schema.Attribute.String;
-    account_id: Schema.Attribute.Integer;
-    accounts: Schema.Attribute.Relation<'oneToMany', 'api::account.account'>;
-    available_name: Schema.Attribute.String;
-    avatar_url: Schema.Attribute.String;
-    confirmed: Schema.Attribute.Boolean;
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    display_name: Schema.Attribute.String;
-    email: Schema.Attribute.String;
-    hmac_identifier: Schema.Attribute.String;
-    id_crm: Schema.Attribute.Integer;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::profile.profile'
-    > &
-      Schema.Attribute.Private;
-    message_signature: Schema.Attribute.String;
-    name: Schema.Attribute.String;
-    publishedAt: Schema.Attribute.DateTime;
-    role: Schema.Attribute.String;
-    type: Schema.Attribute.String;
-    uid: Schema.Attribute.String;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    users_permissions_user: Schema.Attribute.Relation<
-      'oneToOne',
-      'plugin::users-permissions.user'
-    >;
   };
 }
 
@@ -1166,6 +1119,10 @@ export interface PluginUsersPermissionsUser
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    crm_access_token: Schema.Attribute.String;
+    crm_account_id: Schema.Attribute.String;
+    crm_email: Schema.Attribute.String;
+    crm_id: Schema.Attribute.Integer;
     email: Schema.Attribute.Email &
       Schema.Attribute.Required &
       Schema.Attribute.SetMinMaxLength<{
@@ -1184,7 +1141,6 @@ export interface PluginUsersPermissionsUser
         minLength: 6;
       }>;
     phone: Schema.Attribute.String;
-    profile: Schema.Attribute.Relation<'oneToOne', 'api::profile.profile'>;
     provider: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
     resetPasswordToken: Schema.Attribute.String & Schema.Attribute.Private;
@@ -1220,7 +1176,6 @@ declare module '@strapi/strapi' {
       'api::faq.faq': ApiFaqFaq;
       'api::payment.payment': ApiPaymentPayment;
       'api::product.product': ApiProductProduct;
-      'api::profile.profile': ApiProfileProfile;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;

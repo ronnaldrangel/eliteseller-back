@@ -78,11 +78,17 @@
     "phone": {
       "type": "string"
     },
-    "profile": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::profile.profile",
-      "inversedBy": "users_permissions_user"
+    "crm_id": {
+      "type": "integer"
+    },
+    "crm_access_token": {
+      "type": "string"
+    },
+    "crm_account_id": {
+      "type": "string"
+    },
+    "crm_email": {
+      "type": "string"
     }
   }
 }

@@ -49,12 +49,6 @@
     },
     "session_url": {
       "type": "string"
-    },
-    "profile": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::profile.profile",
-      "inversedBy": "accounts"
     }
   }
 }
