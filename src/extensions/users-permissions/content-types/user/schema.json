@@ -84,9 +84,6 @@
     "crm_access_token": {
       "type": "string"
     },
-    "crm_account_id": {
-      "type": "string"
-    },
     "crm_email": {
       "type": "string"
     }

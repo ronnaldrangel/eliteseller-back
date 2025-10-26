@@ -1120,7 +1120,6 @@ export interface PluginUsersPermissionsUser
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     crm_access_token: Schema.Attribute.String;
-    crm_account_id: Schema.Attribute.String;
     crm_email: Schema.Attribute.String;
     crm_id: Schema.Attribute.Integer;
     email: Schema.Attribute.Email &
