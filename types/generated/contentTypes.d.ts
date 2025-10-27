@@ -514,6 +514,7 @@ export interface ApiChatbotChatbot extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    custom: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
     emoji: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<true>;
     faqs: Schema.Attribute.Relation<'oneToMany', 'api::faq.faq'>;
     gender: Schema.Attribute.Enumeration<['male', 'female', 'neutral']> &
@@ -581,6 +582,36 @@ export interface ApiFaqFaq extends Struct.CollectionTypeSchema {
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+  };
+}
+
+export interface ApiInboxInbox extends Struct.CollectionTypeSchema {
+  collectionName: 'inboxes';
+  info: {
+    displayName: 'Inbox';
+    pluralName: 'inboxes';
+    singularName: 'inbox';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::inbox.inbox'> &
+      Schema.Attribute.Private;
+    name: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    type: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    wazend_apikey: Schema.Attribute.String;
+    wazend_name: Schema.Attribute.String;
+    wazend_url: Schema.Attribute.String;
+    webhook_url: Schema.Attribute.String;
   };
 }
 
@@ -1173,6 +1204,7 @@ declare module '@strapi/strapi' {
       'api::account.account': ApiAccountAccount;
       'api::chatbot.chatbot': ApiChatbotChatbot;
       'api::faq.faq': ApiFaqFaq;
+      'api::inbox.inbox': ApiInboxInbox;
       'api::payment.payment': ApiPaymentPayment;
       'api::product.product': ApiProductProduct;
       'plugin::content-releases.release': PluginContentReleasesRelease;

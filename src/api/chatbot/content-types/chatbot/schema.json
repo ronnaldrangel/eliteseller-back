@@ -135,6 +135,11 @@
       "relation": "oneToOne",
       "target": "api::account.account",
       "mappedBy": "chatbot"
+    },
+    "custom": {
+      "type": "boolean",
+      "required": false,
+      "default": false
     }
   }
 }
