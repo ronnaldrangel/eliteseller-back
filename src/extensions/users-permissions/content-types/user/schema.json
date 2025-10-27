@@ -86,6 +86,12 @@
     },
     "crm_email": {
       "type": "string"
+    },
+    "gpt_apikey": {
+      "type": "string"
+    },
+    "gpt_type": {
+      "type": "string"
     }
   }
 }
