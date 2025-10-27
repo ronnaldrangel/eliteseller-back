@@ -41,9 +41,6 @@
     },
     "available": {
       "type": "boolean"
-    },
-    "stock": {
-      "type": "integer"
     }
   }
 }

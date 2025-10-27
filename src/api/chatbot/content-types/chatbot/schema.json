@@ -106,6 +106,9 @@
       "type": "text",
       "default": "Te conectaré con un agente humano para brindarte más ayuda."
     },
+    "catalog_message": {
+      "type": "string"
+    },
     "faqs": {
       "type": "relation",
       "relation": "oneToMany",

@@ -484,6 +484,7 @@ export interface ApiChatbotChatbot extends Struct.CollectionTypeSchema {
     available_emojis: Schema.Attribute.String &
       Schema.Attribute.DefaultTo<'\uD83D\uDE42\uD83D\uDC4D\uD83C\uDF89'>;
     ban_words: Schema.Attribute.JSON;
+    catalog_message: Schema.Attribute.String;
     chatbot_name: Schema.Attribute.String &
       Schema.Attribute.DefaultTo<'EliteSeller'>;
     company_description: Schema.Attribute.Text &
@@ -679,7 +680,6 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
     name: Schema.Attribute.String;
     price: Schema.Attribute.Decimal;
     publishedAt: Schema.Attribute.DateTime;
-    stock: Schema.Attribute.Integer;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
