@@ -469,6 +469,35 @@ export interface ApiAccountAccount extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiCalendarCalendar extends Struct.CollectionTypeSchema {
+  collectionName: 'calendars';
+  info: {
+    displayName: 'Calendar';
+    pluralName: 'calendars';
+    singularName: 'calendar';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    chatbot: Schema.Attribute.Relation<'manyToOne', 'api::chatbot.chatbot'>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::calendar.calendar'
+    > &
+      Schema.Attribute.Private;
+    name: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiChatbotChatbot extends Struct.CollectionTypeSchema {
   collectionName: 'chatbots';
   info: {
@@ -484,6 +513,7 @@ export interface ApiChatbotChatbot extends Struct.CollectionTypeSchema {
     available_emojis: Schema.Attribute.String &
       Schema.Attribute.DefaultTo<'\uD83D\uDE42\uD83D\uDC4D\uD83C\uDF89'>;
     ban_words: Schema.Attribute.JSON;
+    calendars: Schema.Attribute.Relation<'oneToMany', 'api::calendar.calendar'>;
     catalog_message: Schema.Attribute.String;
     chatbot_name: Schema.Attribute.String &
       Schema.Attribute.DefaultTo<'EliteSeller'>;
@@ -538,6 +568,7 @@ export interface ApiChatbotChatbot extends Struct.CollectionTypeSchema {
     > &
       Schema.Attribute.DefaultTo<'Balance'>;
     signs: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<true>;
+    slug: Schema.Attribute.String;
     style_communication: Schema.Attribute.String &
       Schema.Attribute.DefaultTo<'friendly, concise, and clear'>;
     style_sale: Schema.Attribute.String &
@@ -1262,6 +1293,7 @@ declare module '@strapi/strapi' {
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
       'api::account.account': ApiAccountAccount;
+      'api::calendar.calendar': ApiCalendarCalendar;
       'api::chatbot.chatbot': ApiChatbotChatbot;
       'api::faq.faq': ApiFaqFaq;
       'api::inbox.inbox': ApiInboxInbox;

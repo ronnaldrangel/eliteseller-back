@@ -1,0 +1,24 @@
+{
+  "kind": "collectionType",
+  "collectionName": "calendars",
+  "info": {
+    "singularName": "calendar",
+    "pluralName": "calendars",
+    "displayName": "Calendar"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "chatbot": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::chatbot.chatbot",
+      "inversedBy": "calendars"
+    }
+  }
+}

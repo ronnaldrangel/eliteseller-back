@@ -15,6 +15,9 @@
       "type": "string",
       "default": "EliteSeller"
     },
+    "slug": {
+      "type": "string"
+    },
     "company_name": {
       "type": "string",
       "default": "EliteShop"
@@ -143,6 +146,12 @@
       "type": "boolean",
       "required": false,
       "default": false
+    },
+    "calendars": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::calendar.calendar",
+      "mappedBy": "chatbot"
     }
   }
 }
