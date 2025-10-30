@@ -575,6 +575,7 @@ export interface ApiChatbotChatbot extends Struct.CollectionTypeSchema {
       Schema.Attribute.DefaultTo<'consultative'>;
     target: Schema.Attribute.String &
       Schema.Attribute.DefaultTo<'broad consumer audience'>;
+    triggers: Schema.Attribute.Relation<'oneToMany', 'api::trigger.trigger'>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -772,6 +773,39 @@ export interface ApiSupportSupport extends Struct.CollectionTypeSchema {
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     url: Schema.Attribute.String;
+  };
+}
+
+export interface ApiTriggerTrigger extends Struct.CollectionTypeSchema {
+  collectionName: 'triggers';
+  info: {
+    displayName: 'Trigger';
+    pluralName: 'triggers';
+    singularName: 'trigger';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    available: Schema.Attribute.Boolean;
+    chatbot: Schema.Attribute.Relation<'manyToOne', 'api::chatbot.chatbot'>;
+    content: Schema.Attribute.Text;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    keywords: Schema.Attribute.String;
+    keywords_ai: Schema.Attribute.Text;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::trigger.trigger'
+    > &
+      Schema.Attribute.Private;
+    name: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
   };
 }
 
@@ -1301,6 +1335,7 @@ declare module '@strapi/strapi' {
       'api::payment.payment': ApiPaymentPayment;
       'api::product.product': ApiProductProduct;
       'api::support.support': ApiSupportSupport;
+      'api::trigger.trigger': ApiTriggerTrigger;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;

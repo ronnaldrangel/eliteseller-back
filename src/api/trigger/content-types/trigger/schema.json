@@ -1,0 +1,36 @@
+{
+  "kind": "collectionType",
+  "collectionName": "triggers",
+  "info": {
+    "singularName": "trigger",
+    "pluralName": "triggers",
+    "displayName": "Trigger"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "available": {
+      "type": "boolean"
+    },
+    "keywords": {
+      "type": "string"
+    },
+    "keywords_ai": {
+      "type": "text"
+    },
+    "content": {
+      "type": "text"
+    },
+    "chatbot": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::chatbot.chatbot",
+      "inversedBy": "triggers"
+    }
+  }
+}

@@ -152,6 +152,12 @@
       "relation": "oneToMany",
       "target": "api::calendar.calendar",
       "mappedBy": "chatbot"
+    },
+    "triggers": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::trigger.trigger",
+      "mappedBy": "chatbot"
     }
   }
 }
