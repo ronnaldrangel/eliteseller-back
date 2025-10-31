@@ -31,6 +31,9 @@
       "relation": "manyToOne",
       "target": "api::chatbot.chatbot",
       "inversedBy": "triggers"
+    },
+    "id_ads": {
+      "type": "string"
     }
   }
 }

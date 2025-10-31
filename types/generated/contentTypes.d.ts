@@ -793,6 +793,7 @@ export interface ApiTriggerTrigger extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    id_ads: Schema.Attribute.String;
     keywords: Schema.Attribute.String;
     keywords_ai: Schema.Attribute.Text;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
