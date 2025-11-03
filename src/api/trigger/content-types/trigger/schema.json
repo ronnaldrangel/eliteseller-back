@@ -34,6 +34,12 @@
     },
     "id_ads": {
       "type": "string"
+    },
+    "trigger_contents": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::trigger-content.trigger-content",
+      "mappedBy": "trigger"
     }
   }
 }

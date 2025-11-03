@@ -1,0 +1,27 @@
+{
+  "kind": "collectionType",
+  "collectionName": "contacts",
+  "info": {
+    "singularName": "contact",
+    "pluralName": "contacts",
+    "displayName": "Contact"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "customer_phone_name": {
+      "type": "string"
+    },
+    "hotness": {
+      "type": "string"
+    },
+    "sale_status_flag": {
+      "type": "boolean"
+    }
+  }
+}
