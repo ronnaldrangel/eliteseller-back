@@ -158,6 +158,12 @@
       "relation": "oneToMany",
       "target": "api::trigger.trigger",
       "mappedBy": "chatbot"
+    },
+    "tags": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::tag.tag",
+      "mappedBy": "chatbot"
     }
   }
 }

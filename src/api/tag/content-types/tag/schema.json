@@ -19,6 +19,12 @@
     },
     "color": {
       "type": "string"
+    },
+    "chatbot": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::chatbot.chatbot",
+      "inversedBy": "tags"
     }
   }
 }

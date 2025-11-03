@@ -573,6 +573,7 @@ export interface ApiChatbotChatbot extends Struct.CollectionTypeSchema {
       Schema.Attribute.DefaultTo<'friendly, concise, and clear'>;
     style_sale: Schema.Attribute.String &
       Schema.Attribute.DefaultTo<'consultative'>;
+    tags: Schema.Attribute.Relation<'oneToMany', 'api::tag.tag'>;
     target: Schema.Attribute.String &
       Schema.Attribute.DefaultTo<'broad consumer audience'>;
     triggers: Schema.Attribute.Relation<'oneToMany', 'api::trigger.trigger'>;
@@ -818,6 +819,7 @@ export interface ApiTagTag extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
+    chatbot: Schema.Attribute.Relation<'manyToOne', 'api::chatbot.chatbot'>;
     color: Schema.Attribute.String;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
