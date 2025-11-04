@@ -52,4 +52,46 @@ module.exports = ({ env }) => ({
       },
     },
   },
+
+  // 👇 Plugin Redis (necesario para el provider)
+  redis: {
+    config: {
+      connections: {
+        default: {
+          connection: {
+            host: env('REDIS_HOST', '127.0.0.1'),
+            port: env.int('REDIS_PORT', 6379),
+            password: env('REDIS_PASSWORD', null),
+            db: env.int('REDIS_DB', 0),
+          },
+        },
+      },
+    },
+  },
+
+
+// Redis
+  'rest-cache': {
+    enabled: true,
+    config: {
+      provider: {
+        name: 'redis',
+        options: {
+          host: env('REDIS_HOST', '127.0.0.1'),
+          port: env.int('REDIS_PORT', 6379),
+          password: env('REDIS_PASSWORD', null),
+          db: env.int('REDIS_DB', 0),
+        },
+      },
+      strategy: {
+        debug: true,           // Muestra logs de cache hits/misses
+        maxAge: 3600,          // Tiempo de vida del cache (1 hora)
+        allRoutes: true,       // ✅ Cachea todas las rutas GET automáticamente
+        clearRelatedCache: true, // Invalida cuando cambian datos relacionados
+      },
+    },
+  },
+
+
+
 });

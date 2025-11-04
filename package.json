@@ -15,6 +15,10 @@
     "upgrade:dry": "npx @strapi/upgrade latest --dry"
   },
   "dependencies": {
+    "@bull-board/express": "^6.14.0",
+    "@strapi-community/plugin-redis": "^2.0.0",
+    "@strapi-community/plugin-rest-cache": "^5.0.0",
+    "@strapi-community/provider-rest-cache-redis": "^5.0.0",
     "@strapi/plugin-cloud": "5.27.0",
     "@strapi/plugin-users-permissions": "5.27.0",
     "@strapi/provider-email-nodemailer": "^5.28.0",
@@ -22,6 +26,7 @@
     "@strapi/strapi": "^5.27.0",
     "better-sqlite3": "^12.4.1",
     "ioredis": "^5.8.2",
+    "keyv": "^5.5.3",
     "pg": "8.8.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
