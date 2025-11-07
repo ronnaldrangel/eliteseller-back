@@ -14,6 +14,7 @@ module.exports = [
             'blob:',
             'market-assets.strapi.io',
             process.env.MINIO_PRIVATE_ENDPOINT,
+            process.env.MINIO_PUBLIC_ENDPOINT,
           ],
           'media-src': [
             "'self'",
@@ -21,6 +22,7 @@ module.exports = [
             'blob:',
             'market-assets.strapi.io',
             process.env.MINIO_PRIVATE_ENDPOINT,
+            process.env.MINIO_PUBLIC_ENDPOINT,
           ],
           upgradeInsecureRequests: null,
         },
