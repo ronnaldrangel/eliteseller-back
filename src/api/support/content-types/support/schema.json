@@ -11,13 +11,25 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "name": {
+    "title": {
       "type": "string"
     },
-    "url": {
+    "description": {
+      "type": "text"
+    },
+    "cta": {
       "type": "string"
     },
-    "icon": {
+    "href": {
+      "type": "string"
+    },
+    "imageAlt": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string"
+    },
+    "image": {
       "type": "media",
       "multiple": false,
       "allowedTypes": [
