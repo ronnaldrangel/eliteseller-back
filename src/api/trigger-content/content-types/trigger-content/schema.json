@@ -19,6 +19,16 @@
     },
     "message": {
       "type": "text"
+    },
+    "messageMedia": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
     }
   }
 }

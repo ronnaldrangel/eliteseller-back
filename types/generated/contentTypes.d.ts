@@ -498,6 +498,37 @@ export interface ApiCalendarCalendar extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiCardCard extends Struct.CollectionTypeSchema {
+  collectionName: 'cards';
+  info: {
+    displayName: 'Card';
+    pluralName: 'cards';
+    singularName: 'card';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    cta: Schema.Attribute.String;
+    description: Schema.Attribute.Text;
+    href: Schema.Attribute.String;
+    image: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    imageAlt: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::card.card'> &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+    type: Schema.Attribute.String & Schema.Attribute.DefaultTo<'help'>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiChatbotChatbot extends Struct.CollectionTypeSchema {
   collectionName: 'chatbots';
   info: {
@@ -858,6 +889,9 @@ export interface ApiTriggerContentTriggerContent
     > &
       Schema.Attribute.Private;
     message: Schema.Attribute.Text;
+    messageMedia: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
     publishedAt: Schema.Attribute.DateTime;
     trigger: Schema.Attribute.Relation<'manyToOne', 'api::trigger.trigger'>;
     updatedAt: Schema.Attribute.DateTime;
@@ -1423,6 +1457,7 @@ declare module '@strapi/strapi' {
       'admin::user': AdminUser;
       'api::account.account': ApiAccountAccount;
       'api::calendar.calendar': ApiCalendarCalendar;
+      'api::card.card': ApiCardCard;
       'api::chatbot.chatbot': ApiChatbotChatbot;
       'api::contact.contact': ApiContactContact;
       'api::faq.faq': ApiFaqFaq;
