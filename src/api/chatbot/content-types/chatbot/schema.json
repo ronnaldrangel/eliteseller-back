@@ -167,6 +167,12 @@
     },
     "access_token": {
       "type": "string"
+    },
+    "tokens_used": {
+      "type": "integer"
+    },
+    "tokens_limits": {
+      "type": "integer"
     }
   }
 }
