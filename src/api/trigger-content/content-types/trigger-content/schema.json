@@ -7,7 +7,7 @@
     "displayName": "Trigger_Content"
   },
   "options": {
-    "draftAndPublish": true
+    "draftAndPublish": false
   },
   "pluginOptions": {},
   "attributes": {

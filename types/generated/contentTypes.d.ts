@@ -448,9 +448,9 @@ export interface ApiAccountAccount extends Struct.CollectionTypeSchema {
     custom_attributes: Schema.Attribute.JSON;
     domain: Schema.Attribute.String;
     id_account: Schema.Attribute.String;
-    limits: Schema.Attribute.JSON;
+    limit_agent: Schema.Attribute.Integer;
+    limit_inbox: Schema.Attribute.Integer;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
-    locale_account: Schema.Attribute.String;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
       'api::account.account'
@@ -540,6 +540,7 @@ export interface ApiChatbotChatbot extends Struct.CollectionTypeSchema {
     draftAndPublish: false;
   };
   attributes: {
+    access_token: Schema.Attribute.String;
     account: Schema.Attribute.Relation<'oneToOne', 'api::account.account'>;
     available_emojis: Schema.Attribute.String &
       Schema.Attribute.DefaultTo<'\uD83D\uDE42\uD83D\uDC4D\uD83C\uDF89'>;
@@ -681,36 +682,6 @@ export interface ApiFaqFaq extends Struct.CollectionTypeSchema {
   };
 }
 
-export interface ApiInboxInbox extends Struct.CollectionTypeSchema {
-  collectionName: 'inboxes';
-  info: {
-    displayName: 'Inbox';
-    pluralName: 'inboxes';
-    singularName: 'inbox';
-  };
-  options: {
-    draftAndPublish: false;
-  };
-  attributes: {
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<'oneToMany', 'api::inbox.inbox'> &
-      Schema.Attribute.Private;
-    name: Schema.Attribute.String;
-    publishedAt: Schema.Attribute.DateTime;
-    type: Schema.Attribute.String;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    wazend_apikey: Schema.Attribute.String;
-    wazend_name: Schema.Attribute.String;
-    wazend_url: Schema.Attribute.String;
-    webhook_url: Schema.Attribute.String;
-  };
-}
-
 export interface ApiNewNew extends Struct.CollectionTypeSchema {
   collectionName: 'news';
   info: {
@@ -719,7 +690,7 @@ export interface ApiNewNew extends Struct.CollectionTypeSchema {
     singularName: 'new';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     action: Schema.Attribute.String;
@@ -847,7 +818,7 @@ export interface ApiTagTag extends Struct.CollectionTypeSchema {
     singularName: 'tag';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     chatbot: Schema.Attribute.Relation<'manyToOne', 'api::chatbot.chatbot'>;
@@ -876,7 +847,7 @@ export interface ApiTriggerContentTriggerContent
     singularName: 'trigger-content';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     createdAt: Schema.Attribute.DateTime;
@@ -1461,7 +1432,6 @@ declare module '@strapi/strapi' {
       'api::chatbot.chatbot': ApiChatbotChatbot;
       'api::contact.contact': ApiContactContact;
       'api::faq.faq': ApiFaqFaq;
-      'api::inbox.inbox': ApiInboxInbox;
       'api::new.new': ApiNewNew;
       'api::payment.payment': ApiPaymentPayment;
       'api::product.product': ApiProductProduct;

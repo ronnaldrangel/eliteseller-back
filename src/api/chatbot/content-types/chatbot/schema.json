@@ -164,6 +164,9 @@
       "relation": "oneToMany",
       "target": "api::tag.tag",
       "mappedBy": "chatbot"
+    },
+    "access_token": {
+      "type": "string"
     }
   }
 }

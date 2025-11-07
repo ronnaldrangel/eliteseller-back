@@ -17,9 +17,6 @@
     "name": {
       "type": "string"
     },
-    "locale_account": {
-      "type": "string"
-    },
     "domain": {
       "type": "string"
     },
@@ -28,9 +25,6 @@
     },
     "status_account": {
       "type": "string"
-    },
-    "limits": {
-      "type": "json"
     },
     "custom_attributes": {
       "type": "json"
@@ -49,6 +43,12 @@
     },
     "session_url": {
       "type": "string"
+    },
+    "limit_agent": {
+      "type": "integer"
+    },
+    "limit_inbox": {
+      "type": "integer"
     }
   }
 }
