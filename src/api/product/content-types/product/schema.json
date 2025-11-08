@@ -41,6 +41,13 @@
     },
     "available": {
       "type": "boolean"
+    },
+    "is_auto_delivery": {
+      "type": "boolean",
+      "default": true
+    },
+    "auto_delivery_msg": {
+      "type": "text"
     }
   }
 }

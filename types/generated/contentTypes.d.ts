@@ -728,6 +728,7 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
     draftAndPublish: false;
   };
   attributes: {
+    auto_delivery_msg: Schema.Attribute.Text;
     available: Schema.Attribute.Boolean;
     chatbot: Schema.Attribute.Relation<'manyToOne', 'api::chatbot.chatbot'>;
     createdAt: Schema.Attribute.DateTime;
@@ -735,6 +736,8 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     description_complete: Schema.Attribute.String;
     description_wsp: Schema.Attribute.Text;
+    is_auto_delivery: Schema.Attribute.Boolean &
+      Schema.Attribute.DefaultTo<true>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
