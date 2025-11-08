@@ -29,6 +29,14 @@
         "videos",
         "audios"
       ]
+    },
+    "type": {
+      "type": "enumeration",
+      "default": "message",
+      "enum": [
+        "message",
+        "media"
+      ]
     }
   }
 }

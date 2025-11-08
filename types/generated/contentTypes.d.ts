@@ -843,6 +843,8 @@ export interface ApiTriggerContentTriggerContent
     >;
     publishedAt: Schema.Attribute.DateTime;
     trigger: Schema.Attribute.Relation<'manyToOne', 'api::trigger.trigger'>;
+    type: Schema.Attribute.Enumeration<['message', 'media']> &
+      Schema.Attribute.DefaultTo<'message'>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
