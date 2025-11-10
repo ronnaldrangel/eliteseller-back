@@ -17,23 +17,11 @@
     "name": {
       "type": "string"
     },
-    "domain": {
-      "type": "string"
-    },
-    "support_email": {
-      "type": "string"
-    },
     "status_account": {
       "type": "string"
     },
     "custom_attributes": {
       "type": "json"
-    },
-    "chatbot": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::chatbot.chatbot",
-      "inversedBy": "account"
     },
     "session_name": {
       "type": "string"
@@ -49,6 +37,18 @@
     },
     "limit_inbox": {
       "type": "integer"
+    },
+    "chatbot": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::chatbot.chatbot",
+      "inversedBy": "account"
+    },
+    "users_permissions_user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "accounts"
     }
   }
 }

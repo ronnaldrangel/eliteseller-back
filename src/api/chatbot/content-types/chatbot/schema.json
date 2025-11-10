@@ -173,6 +173,18 @@
     },
     "tokens_limits": {
       "type": "integer"
+    },
+    "contacts": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::contact.contact",
+      "mappedBy": "chatbot"
+    },
+    "subscription": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::subscription.subscription",
+      "inversedBy": "chatbot"
     }
   }
 }

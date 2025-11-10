@@ -92,6 +92,18 @@
     },
     "gpt_type": {
       "type": "string"
+    },
+    "accounts": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::account.account",
+      "mappedBy": "users_permissions_user"
+    },
+    "subscriptions": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::subscription.subscription",
+      "mappedBy": "users_permissions_user"
     }
   }
 }

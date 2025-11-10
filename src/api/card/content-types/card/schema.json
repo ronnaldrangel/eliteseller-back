@@ -15,10 +15,6 @@
       "type": "string",
       "required": true
     },
-    "type": {
-      "type": "string",
-      "default": "help"
-    },
     "description": {
       "type": "text"
     },

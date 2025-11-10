@@ -7,7 +7,7 @@
     "displayName": "Contact"
   },
   "options": {
-    "draftAndPublish": true
+    "draftAndPublish": false
   },
   "pluginOptions": {},
   "attributes": {
@@ -22,6 +22,12 @@
     },
     "sale_status_flag": {
       "type": "boolean"
+    },
+    "chatbot": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::chatbot.chatbot",
+      "inversedBy": "contacts"
     }
   }
 }

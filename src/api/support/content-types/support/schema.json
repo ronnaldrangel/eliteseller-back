@@ -26,9 +26,6 @@
     "imageAlt": {
       "type": "string"
     },
-    "type": {
-      "type": "string"
-    },
     "image": {
       "type": "media",
       "multiple": false,

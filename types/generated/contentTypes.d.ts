@@ -446,7 +446,6 @@ export interface ApiAccountAccount extends Struct.CollectionTypeSchema {
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     custom_attributes: Schema.Attribute.JSON;
-    domain: Schema.Attribute.String;
     id_account: Schema.Attribute.String;
     limit_agent: Schema.Attribute.Integer;
     limit_inbox: Schema.Attribute.Integer;
@@ -462,10 +461,13 @@ export interface ApiAccountAccount extends Struct.CollectionTypeSchema {
     session_name: Schema.Attribute.String;
     session_url: Schema.Attribute.String;
     status_account: Schema.Attribute.String;
-    support_email: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    users_permissions_user: Schema.Attribute.Relation<
+      'manyToOne',
+      'plugin::users-permissions.user'
+    >;
   };
 }
 
@@ -522,7 +524,6 @@ export interface ApiCardCard extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
     title: Schema.Attribute.String & Schema.Attribute.Required;
-    type: Schema.Attribute.String & Schema.Attribute.DefaultTo<'help'>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -555,6 +556,7 @@ export interface ApiChatbotChatbot extends Struct.CollectionTypeSchema {
       Schema.Attribute.DefaultTo<'EliteShop'>;
     confirmation_message: Schema.Attribute.Text &
       Schema.Attribute.DefaultTo<'\u00A1Gracias por tu compra! Estamos procesando tu pedido y pronto recibir\u00E1s la confirmaci\u00F3n.'>;
+    contacts: Schema.Attribute.Relation<'oneToMany', 'api::contact.contact'>;
     country: Schema.Attribute.Enumeration<
       [
         'Mexico',
@@ -605,6 +607,10 @@ export interface ApiChatbotChatbot extends Struct.CollectionTypeSchema {
       Schema.Attribute.DefaultTo<'friendly, concise, and clear'>;
     style_sale: Schema.Attribute.String &
       Schema.Attribute.DefaultTo<'consultative'>;
+    subscription: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::subscription.subscription'
+    >;
     tags: Schema.Attribute.Relation<'oneToMany', 'api::tag.tag'>;
     target: Schema.Attribute.String &
       Schema.Attribute.DefaultTo<'broad consumer audience'>;
@@ -631,9 +637,10 @@ export interface ApiContactContact extends Struct.CollectionTypeSchema {
     singularName: 'contact';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
+    chatbot: Schema.Attribute.Relation<'manyToOne', 'api::chatbot.chatbot'>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -757,6 +764,53 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiSubscriptionSubscription
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'subscriptions';
+  info: {
+    displayName: 'Subscription';
+    pluralName: 'subscriptions';
+    singularName: 'subscription';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    billing_interval: Schema.Attribute.Integer;
+    billing_period: Schema.Attribute.String;
+    cancelled_date_gmt: Schema.Attribute.DateTime;
+    chatbot: Schema.Attribute.Relation<'oneToOne', 'api::chatbot.chatbot'>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    currency: Schema.Attribute.String;
+    customer_id: Schema.Attribute.String;
+    end_date_gmt: Schema.Attribute.DateTime;
+    last_payment_date_gmt: Schema.Attribute.DateTime;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::subscription.subscription'
+    > &
+      Schema.Attribute.Private;
+    next_payment_date_gmt: Schema.Attribute.DateTime;
+    payment_method_title: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    start_date_gmt: Schema.Attribute.DateTime;
+    sub_id: Schema.Attribute.Integer;
+    sub_status: Schema.Attribute.String;
+    total: Schema.Attribute.Integer;
+    trial_end_date_gmt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    users_permissions_user: Schema.Attribute.Relation<
+      'manyToOne',
+      'plugin::users-permissions.user'
+    >;
+  };
+}
+
 export interface ApiSupportSupport extends Struct.CollectionTypeSchema {
   collectionName: 'supports';
   info: {
@@ -784,7 +838,6 @@ export interface ApiSupportSupport extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
     title: Schema.Attribute.String;
-    type: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -873,7 +926,6 @@ export interface ApiTriggerTrigger extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     id_ads: Schema.Attribute.String;
     keywords: Schema.Attribute.String;
-    keywords_ai: Schema.Attribute.Text;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -1349,6 +1401,7 @@ export interface PluginUsersPermissionsUser
     draftAndPublish: false;
   };
   attributes: {
+    accounts: Schema.Attribute.Relation<'oneToMany', 'api::account.account'>;
     blocked: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
     chatbots: Schema.Attribute.Relation<'oneToMany', 'api::chatbot.chatbot'>;
     confirmationToken: Schema.Attribute.String & Schema.Attribute.Private;
@@ -1386,6 +1439,10 @@ export interface PluginUsersPermissionsUser
       'manyToOne',
       'plugin::users-permissions.role'
     >;
+    subscriptions: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::subscription.subscription'
+    >;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1417,6 +1474,7 @@ declare module '@strapi/strapi' {
       'api::faq.faq': ApiFaqFaq;
       'api::payment.payment': ApiPaymentPayment;
       'api::product.product': ApiProductProduct;
+      'api::subscription.subscription': ApiSubscriptionSubscription;
       'api::support.support': ApiSupportSupport;
       'api::tag.tag': ApiTagTag;
       'api::trigger-content.trigger-content': ApiTriggerContentTriggerContent;

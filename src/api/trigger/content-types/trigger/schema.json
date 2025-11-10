@@ -20,9 +20,6 @@
     "keywords": {
       "type": "string"
     },
-    "keywords_ai": {
-      "type": "text"
-    },
     "content": {
       "type": "text"
     },
