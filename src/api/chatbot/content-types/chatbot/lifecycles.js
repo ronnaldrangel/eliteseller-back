@@ -14,14 +14,13 @@ function generateSlug(text) {
 module.exports = {
   async beforeCreate(event) {
     const { data } = event.params;
-    console.log("beforeCreate data:", data.users_permissions_user.connect[0].id);
+    const ctx = strapi?.requestContext?.get?.();
+    const userId =
+      data?.users_permissions_user?.connect?.[0]?.id ?? ctx?.state?.user?.id;
 
     if (data.chatbot_name) {
       let slug = generateSlug(data.chatbot_name);
       let counter = 1;
-
-      const userId =
-        data.users_permissions_user.connect[0].id;
       if (userId) {
         // Verificar slug único SOLO para el mismo usuario
         let exists = await strapi.documents("api::chatbot.chatbot").findMany({
