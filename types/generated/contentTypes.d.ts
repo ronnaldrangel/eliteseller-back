@@ -661,6 +661,47 @@ export interface ApiContactContact extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiCustomerCustomer extends Struct.CollectionTypeSchema {
+  collectionName: 'customers';
+  info: {
+    displayName: 'Customer';
+    pluralName: 'customers';
+    singularName: 'customer';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    created: Schema.Attribute.DateTime;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    creditCardType: Schema.Attribute.String;
+    customer_status: Schema.Attribute.Integer;
+    customerId: Schema.Attribute.String;
+    email: Schema.Attribute.String;
+    externalId: Schema.Attribute.String;
+    last4CardDigits: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::customer.customer'
+    > &
+      Schema.Attribute.Private;
+    name: Schema.Attribute.String;
+    pay_mode: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    registerDate: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    users_permissions_user: Schema.Attribute.Relation<
+      'oneToOne',
+      'plugin::users-permissions.user'
+    >;
+  };
+}
+
 export interface ApiFaqFaq extends Struct.CollectionTypeSchema {
   collectionName: 'faqs';
   info: {
@@ -718,6 +759,35 @@ export interface ApiPaymentPayment extends Struct.CollectionTypeSchema {
     type: Schema.Attribute.Enumeration<
       ['Billeteras virtuales', 'Transferencia bancaria']
     >;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiPlanPlan extends Struct.CollectionTypeSchema {
+  collectionName: 'plans';
+  info: {
+    displayName: 'Plan';
+    pluralName: 'plans';
+    singularName: 'plan';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    billing_interval: Schema.Attribute.Integer;
+    billing_period: Schema.Attribute.String;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::plan.plan'> &
+      Schema.Attribute.Private;
+    name: Schema.Attribute.String;
+    plan_id: Schema.Attribute.String;
+    price: Schema.Attribute.Integer;
+    publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1412,6 +1482,7 @@ export interface PluginUsersPermissionsUser
     crm_access_token: Schema.Attribute.String;
     crm_email: Schema.Attribute.String;
     crm_id: Schema.Attribute.Integer;
+    customer: Schema.Attribute.Relation<'oneToOne', 'api::customer.customer'>;
     email: Schema.Attribute.Email &
       Schema.Attribute.Required &
       Schema.Attribute.SetMinMaxLength<{
@@ -1471,8 +1542,10 @@ declare module '@strapi/strapi' {
       'api::card.card': ApiCardCard;
       'api::chatbot.chatbot': ApiChatbotChatbot;
       'api::contact.contact': ApiContactContact;
+      'api::customer.customer': ApiCustomerCustomer;
       'api::faq.faq': ApiFaqFaq;
       'api::payment.payment': ApiPaymentPayment;
+      'api::plan.plan': ApiPlanPlan;
       'api::product.product': ApiProductProduct;
       'api::subscription.subscription': ApiSubscriptionSubscription;
       'api::support.support': ApiSupportSupport;

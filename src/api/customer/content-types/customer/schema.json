@@ -1,0 +1,51 @@
+{
+  "kind": "collectionType",
+  "collectionName": "customers",
+  "info": {
+    "singularName": "customer",
+    "pluralName": "customers",
+    "displayName": "Customer"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "customerId": {
+      "type": "string"
+    },
+    "created": {
+      "type": "datetime"
+    },
+    "email": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "pay_mode": {
+      "type": "string"
+    },
+    "creditCardType": {
+      "type": "string"
+    },
+    "last4CardDigits": {
+      "type": "string"
+    },
+    "externalId": {
+      "type": "string"
+    },
+    "customer_status": {
+      "type": "integer"
+    },
+    "registerDate": {
+      "type": "datetime"
+    },
+    "users_permissions_user": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "customer"
+    }
+  }
+}
