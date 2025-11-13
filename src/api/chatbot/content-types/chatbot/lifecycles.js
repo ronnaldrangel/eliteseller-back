@@ -59,52 +59,54 @@ module.exports = {
     }
   },
 
-  async beforeUpdate(event) {
-    const { data, where } = event.params;
+  // Esta function se encarga de actualizar el slug cuando se cambia el nombre del chatbot.
+  // Deshabilitada por ahora
+  // async beforeUpdate(event) {
+  //   const { data, where } = event.params;
 
-    // Si se está actualizando el nombre del chatbot y no se proporciona slug
-    if (data.chatbot_name && !data.slug) {
-      let slug = generateSlug(data.chatbot_name);
+  //   // Si se está actualizando el nombre del chatbot y no se proporciona slug
+  //   if (data.chatbot_name && !data.slug) {
+  //     let slug = generateSlug(data.chatbot_name);
 
-      // Obtener el chatbot actual para saber su usuario
-      const currentChatbot = await strapi
-        .documents("api::chatbot.chatbot")
-        .findOne({
-          documentId: where.documentId,
-          populate: ["users_permissions_user"],
-        });
+  //     // Obtener el chatbot actual para saber su usuario
+  //     const currentChatbot = await strapi
+  //       .documents("api::chatbot.chatbot")
+  //       .findOne({
+  //         documentId: where.documentId,
+  //         populate: ["users_permissions_user"],
+  //       });
 
-      if (currentChatbot) {
-        const userId = currentChatbot.users_permissions_user?.id;
+  //     if (currentChatbot) {
+  //       const userId = currentChatbot.users_permissions_user?.id;
 
-        if (userId) {
-          let counter = 1;
+  //       if (userId) {
+  //         let counter = 1;
 
-          // Verificar que no exista otro bot del mismo usuario con ese slug
-          // Excluir el chatbot actual de la búsqueda
-          let exists = await strapi.documents("api::chatbot.chatbot").findMany({
-            filters: {
-              slug,
-              users_permissions_user: { id: userId },
-              documentId: { $ne: where.documentId },
-            },
-          });
+  //         // Verificar que no exista otro bot del mismo usuario con ese slug
+  //         // Excluir el chatbot actual de la búsqueda
+  //         let exists = await strapi.documents("api::chatbot.chatbot").findMany({
+  //           filters: {
+  //             slug,
+  //             users_permissions_user: { id: userId },
+  //             documentId: { $ne: where.documentId },
+  //           },
+  //         });
 
-          while (exists.length > 0) {
-            slug = `${generateSlug(data.chatbot_name)}-${counter}`;
-            exists = await strapi.documents("api::chatbot.chatbot").findMany({
-              filters: {
-                slug,
-                users_permissions_user: { id: userId },
-                documentId: { $ne: where.documentId },
-              },
-            });
-            counter++;
-          }
-        }
-      }
+  //         while (exists.length > 0) {
+  //           slug = `${generateSlug(data.chatbot_name)}-${counter}`;
+  //           exists = await strapi.documents("api::chatbot.chatbot").findMany({
+  //             filters: {
+  //               slug,
+  //               users_permissions_user: { id: userId },
+  //               documentId: { $ne: where.documentId },
+  //             },
+  //           });
+  //           counter++;
+  //         }
+  //       }
+  //     }
 
-      data.slug = slug;
-    }
-  },
+  //     data.slug = slug;
+  //   }
+  // },
 };
