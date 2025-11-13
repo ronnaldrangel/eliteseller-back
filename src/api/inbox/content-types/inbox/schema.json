@@ -1,0 +1,36 @@
+{
+  "kind": "collectionType",
+  "collectionName": "inboxes",
+  "info": {
+    "singularName": "inbox",
+    "pluralName": "inboxes",
+    "displayName": "Inbox"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "inbox_name": {
+      "type": "string"
+    },
+    "inbox_id": {
+      "type": "string"
+    },
+    "session_name": {
+      "type": "string"
+    },
+    "session_apikey": {
+      "type": "string"
+    },
+    "session_url": {
+      "type": "string"
+    },
+    "account": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::account.account",
+      "inversedBy": "inboxes"
+    }
+  }
+}

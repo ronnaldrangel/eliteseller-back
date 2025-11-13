@@ -87,18 +87,6 @@
     "crm_email": {
       "type": "string"
     },
-    "gpt_apikey": {
-      "type": "string"
-    },
-    "gpt_type": {
-      "type": "string"
-    },
-    "accounts": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::account.account",
-      "mappedBy": "users_permissions_user"
-    },
     "subscriptions": {
       "type": "relation",
       "relation": "oneToMany",

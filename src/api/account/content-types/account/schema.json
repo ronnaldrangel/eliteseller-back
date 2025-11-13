@@ -44,11 +44,11 @@
       "target": "api::chatbot.chatbot",
       "inversedBy": "account"
     },
-    "users_permissions_user": {
+    "inboxes": {
       "type": "relation",
-      "relation": "manyToOne",
-      "target": "plugin::users-permissions.user",
-      "inversedBy": "accounts"
+      "relation": "oneToMany",
+      "target": "api::inbox.inbox",
+      "mappedBy": "account"
     }
   }
 }

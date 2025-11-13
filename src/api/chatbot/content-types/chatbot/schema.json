@@ -185,6 +185,12 @@
       "relation": "oneToOne",
       "target": "api::subscription.subscription",
       "inversedBy": "chatbot"
+    },
+    "gpt_type": {
+      "type": "string"
+    },
+    "gpt_apikey": {
+      "type": "string"
     }
   }
 }

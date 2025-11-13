@@ -447,6 +447,7 @@ export interface ApiAccountAccount extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     custom_attributes: Schema.Attribute.JSON;
     id_account: Schema.Attribute.String;
+    inboxes: Schema.Attribute.Relation<'oneToMany', 'api::inbox.inbox'>;
     limit_agent: Schema.Attribute.Integer;
     limit_inbox: Schema.Attribute.Integer;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
@@ -464,10 +465,6 @@ export interface ApiAccountAccount extends Struct.CollectionTypeSchema {
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    users_permissions_user: Schema.Attribute.Relation<
-      'manyToOne',
-      'plugin::users-permissions.user'
-    >;
   };
 }
 
@@ -584,6 +581,8 @@ export interface ApiChatbotChatbot extends Struct.CollectionTypeSchema {
     faqs: Schema.Attribute.Relation<'oneToMany', 'api::faq.faq'>;
     gender: Schema.Attribute.Enumeration<['male', 'female', 'neutral']> &
       Schema.Attribute.DefaultTo<'male'>;
+    gpt_apikey: Schema.Attribute.String;
+    gpt_type: Schema.Attribute.String;
     human_derivation_message: Schema.Attribute.Text &
       Schema.Attribute.DefaultTo<'Te conectar\u00E9 con un agente humano para brindarte m\u00E1s ayuda.'>;
     instructions: Schema.Attribute.String &
@@ -726,6 +725,36 @@ export interface ApiFaqFaq extends Struct.CollectionTypeSchema {
     publishedAt: Schema.Attribute.DateTime;
     question: Schema.Attribute.String;
     response: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiInboxInbox extends Struct.CollectionTypeSchema {
+  collectionName: 'inboxes';
+  info: {
+    displayName: 'Inbox';
+    pluralName: 'inboxes';
+    singularName: 'inbox';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    account: Schema.Attribute.Relation<'manyToOne', 'api::account.account'>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    inbox_id: Schema.Attribute.String;
+    inbox_name: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::inbox.inbox'> &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    session_apikey: Schema.Attribute.String;
+    session_name: Schema.Attribute.String;
+    session_url: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1471,7 +1500,6 @@ export interface PluginUsersPermissionsUser
     draftAndPublish: false;
   };
   attributes: {
-    accounts: Schema.Attribute.Relation<'oneToMany', 'api::account.account'>;
     blocked: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
     chatbots: Schema.Attribute.Relation<'oneToMany', 'api::chatbot.chatbot'>;
     confirmationToken: Schema.Attribute.String & Schema.Attribute.Private;
@@ -1488,8 +1516,6 @@ export interface PluginUsersPermissionsUser
       Schema.Attribute.SetMinMaxLength<{
         minLength: 6;
       }>;
-    gpt_apikey: Schema.Attribute.String;
-    gpt_type: Schema.Attribute.String;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -1544,6 +1570,7 @@ declare module '@strapi/strapi' {
       'api::contact.contact': ApiContactContact;
       'api::customer.customer': ApiCustomerCustomer;
       'api::faq.faq': ApiFaqFaq;
+      'api::inbox.inbox': ApiInboxInbox;
       'api::payment.payment': ApiPaymentPayment;
       'api::plan.plan': ApiPlanPlan;
       'api::product.product': ApiProductProduct;
