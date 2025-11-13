@@ -25,6 +25,12 @@
     },
     "billing_period": {
       "type": "string"
+    },
+    "features": {
+      "type": "json"
+    },
+    "regular_price": {
+      "type": "integer"
     }
   }
 }
