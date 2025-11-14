@@ -48,6 +48,18 @@
     },
     "auto_delivery_msg": {
       "type": "text"
+    },
+    "product_options": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::product-option.product-option",
+      "mappedBy": "product"
+    },
+    "product_variants": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::product-variant.product-variant",
+      "mappedBy": "product"
     }
   }
 }
