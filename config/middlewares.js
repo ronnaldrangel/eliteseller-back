@@ -36,5 +36,6 @@ module.exports = [
   'strapi::body',
   'strapi::session',
   'strapi::favicon',
+  'strapi::compression',
   'strapi::public',
 ];
