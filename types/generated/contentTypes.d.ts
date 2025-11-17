@@ -691,6 +691,10 @@ export interface ApiCustomerCustomer extends Struct.CollectionTypeSchema {
     pay_mode: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
     registerDate: Schema.Attribute.DateTime;
+    subscriptions: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::subscription.subscription'
+    >;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -739,7 +743,7 @@ export interface ApiInboxInbox extends Struct.CollectionTypeSchema {
     singularName: 'inbox';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     account: Schema.Attribute.Relation<'manyToOne', 'api::account.account'>;
@@ -819,6 +823,10 @@ export interface ApiPlanPlan extends Struct.CollectionTypeSchema {
     price: Schema.Attribute.Integer;
     publishedAt: Schema.Attribute.DateTime;
     regular_price: Schema.Attribute.Integer;
+    subscriptions: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::subscription.subscription'
+    >;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -834,7 +842,7 @@ export interface ApiProductOptionProductOption
     singularName: 'product-option';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     createdAt: Schema.Attribute.DateTime;
@@ -946,7 +954,7 @@ export interface ApiSubscriptionSubscription
     singularName: 'subscription';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     billing_interval: Schema.Attribute.Integer;
@@ -957,6 +965,7 @@ export interface ApiSubscriptionSubscription
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     currency: Schema.Attribute.String;
+    customer: Schema.Attribute.Relation<'manyToOne', 'api::customer.customer'>;
     customer_id: Schema.Attribute.String;
     end_date_gmt: Schema.Attribute.DateTime;
     last_payment_date_gmt: Schema.Attribute.DateTime;
@@ -968,9 +977,10 @@ export interface ApiSubscriptionSubscription
       Schema.Attribute.Private;
     next_payment_date_gmt: Schema.Attribute.DateTime;
     payment_method_title: Schema.Attribute.String;
+    plan: Schema.Attribute.Relation<'manyToOne', 'api::plan.plan'>;
     publishedAt: Schema.Attribute.DateTime;
     start_date_gmt: Schema.Attribute.DateTime;
-    sub_id: Schema.Attribute.Integer;
+    sub_id: Schema.Attribute.String;
     sub_status: Schema.Attribute.String;
     total: Schema.Attribute.Integer;
     trial_end_date_gmt: Schema.Attribute.DateTime;

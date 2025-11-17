@@ -31,6 +31,12 @@
     },
     "regular_price": {
       "type": "integer"
+    },
+    "subscriptions": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::subscription.subscription",
+      "mappedBy": "plan"
     }
   }
 }

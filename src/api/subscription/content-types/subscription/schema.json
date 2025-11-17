@@ -7,14 +7,14 @@
     "displayName": "Subscription"
   },
   "options": {
-    "draftAndPublish": true
+    "draftAndPublish": false
   },
   "pluginOptions": {},
   "attributes": {
-    "sub_id": {
-      "type": "integer"
-    },
     "sub_status": {
+      "type": "string"
+    },
+    "sub_id": {
       "type": "string"
     },
     "total": {
@@ -64,6 +64,18 @@
       "relation": "oneToOne",
       "target": "api::chatbot.chatbot",
       "mappedBy": "subscription"
+    },
+    "customer": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::customer.customer",
+      "inversedBy": "subscriptions"
+    },
+    "plan": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::plan.plan",
+      "inversedBy": "subscriptions"
     }
   }
 }

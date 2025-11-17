@@ -7,7 +7,7 @@
     "displayName": "Product_Option"
   },
   "options": {
-    "draftAndPublish": true
+    "draftAndPublish": false
   },
   "pluginOptions": {},
   "attributes": {
