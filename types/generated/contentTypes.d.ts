@@ -880,7 +880,13 @@ export interface ApiProductVariantProductVariant
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    currency: Schema.Attribute.Enumeration<
+      ['USD', 'EUR', 'GBP', 'MXN', 'COP', 'CLP', 'ARS', 'PEN', 'BRL']
+    > &
+      Schema.Attribute.DefaultTo<'USD'>;
     image: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    inherit_product_price: Schema.Attribute.Boolean &
+      Schema.Attribute.DefaultTo<true>;
     is_available: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<true>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
@@ -888,12 +894,6 @@ export interface ApiProductVariantProductVariant
       'api::product-variant.product-variant'
     > &
       Schema.Attribute.Private;
-    currency: Schema.Attribute.Enumeration<
-      ['USD', 'EUR', 'GBP', 'MXN', 'COP', 'CLP', 'ARS', 'PEN', 'BRL']
-    > &
-      Schema.Attribute.DefaultTo<'USD'>;
-    inherit_product_price: Schema.Attribute.Boolean &
-      Schema.Attribute.DefaultTo<true>;
     price: Schema.Attribute.Decimal;
     product: Schema.Attribute.Relation<'manyToOne', 'api::product.product'>;
     publishedAt: Schema.Attribute.DateTime;
@@ -920,6 +920,10 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    currency: Schema.Attribute.Enumeration<
+      ['USD', 'EUR', 'GBP', 'MXN', 'COP', 'CLP', 'ARS', 'PEN', 'BRL']
+    > &
+      Schema.Attribute.DefaultTo<'USD'>;
     description_complete: Schema.Attribute.String;
     description_wsp: Schema.Attribute.Text;
     is_auto_delivery: Schema.Attribute.Boolean &
@@ -935,10 +939,6 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
       true
     >;
     name: Schema.Attribute.String;
-    currency: Schema.Attribute.Enumeration<
-      ['USD', 'EUR', 'GBP', 'MXN', 'COP', 'CLP', 'ARS', 'PEN', 'BRL']
-    > &
-      Schema.Attribute.DefaultTo<'USD'>;
     price: Schema.Attribute.Decimal;
     product_options: Schema.Attribute.Relation<
       'oneToMany',

@@ -6,6 +6,8 @@ module.exports = {
   async beforeCreate(event) {
     const { data } = event.params;
     const ctx = strapi?.requestContext?.get?.();
+    console.log("Before Create Lifecycle Triggered");
+    console.log("Data:", data);
     // Obtenermos el nombre de usuario y verificamos si existe
     const name =
       data?.users_permissions_user?.connect?.[0]?.id ?? ctx?.state?.user?.name;
