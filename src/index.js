@@ -1,4 +1,7 @@
-'use strict';
+"use strict";
+
+const generateName = (username) =>
+  username.trim().toLowerCase().replace(/\s+/g, "-");
 
 module.exports = {
   /**
@@ -16,5 +19,22 @@ module.exports = {
    * This gives you an opportunity to set up your data model,
    * run jobs, or perform some special logic.
    */
-  bootstrap(/*{ strapi }*/) {},
+  bootstrap({ strapi }) {
+    strapi.db.lifecycles.subscribe({
+      models: ["plugin::users-permissions.user"],
+      async beforeCreate(event) {
+        const { data } = event.params;
+
+        console.log("Before Create Lifecycle Triggered");
+        console.log("Data:", data);
+
+        const name = data.name;
+        const username = data.username;
+
+        if (!name && username) {
+          data.name = generateName(username);
+        }
+      },
+    });
+  },
 };
