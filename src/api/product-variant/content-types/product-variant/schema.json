@@ -17,6 +17,25 @@
     "price": {
       "type": "decimal"
     },
+    "currency": {
+      "type": "enumeration",
+      "enum": [
+        "USD",
+        "EUR",
+        "GBP",
+        "MXN",
+        "COP",
+        "CLP",
+        "ARS",
+        "PEN",
+        "BRL"
+      ],
+      "default": "USD"
+    },
+    "inherit_product_price": {
+      "type": "boolean",
+      "default": true
+    },
     "image": {
       "type": "media",
       "multiple": false,

@@ -33,6 +33,21 @@
     "price": {
       "type": "decimal"
     },
+    "currency": {
+      "type": "enumeration",
+      "enum": [
+        "USD",
+        "EUR",
+        "GBP",
+        "MXN",
+        "COP",
+        "CLP",
+        "ARS",
+        "PEN",
+        "BRL"
+      ],
+      "default": "USD"
+    },
     "chatbot": {
       "type": "relation",
       "relation": "manyToOne",
