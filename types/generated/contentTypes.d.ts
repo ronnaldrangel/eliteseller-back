@@ -587,6 +587,8 @@ export interface ApiChatbotChatbot extends Struct.CollectionTypeSchema {
       Schema.Attribute.DefaultTo<'Te conectar\u00E9 con un agente humano para brindarte m\u00E1s ayuda.'>;
     instructions: Schema.Attribute.String &
       Schema.Attribute.DefaultTo<'general product support'>;
+    isWhatsAppConnected: Schema.Attribute.Boolean &
+      Schema.Attribute.DefaultTo<false>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',

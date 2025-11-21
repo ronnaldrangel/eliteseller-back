@@ -191,6 +191,10 @@
     },
     "gpt_apikey": {
       "type": "string"
+    },
+    "isWhatsAppConnected": {
+      "type": "boolean",
+      "default": false
     }
   }
 }
