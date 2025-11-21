@@ -37,6 +37,10 @@
         "message",
         "media"
       ]
+    },
+    "order": {
+      "type": "integer",
+      "default": 0
     }
   }
 }

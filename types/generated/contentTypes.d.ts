@@ -1090,6 +1090,7 @@ export interface ApiTriggerContentTriggerContent
     messageMedia: Schema.Attribute.Media<
       'images' | 'files' | 'videos' | 'audios'
     >;
+    order: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<0>;
     publishedAt: Schema.Attribute.DateTime;
     trigger: Schema.Attribute.Relation<'manyToOne', 'api::trigger.trigger'>;
     type: Schema.Attribute.Enumeration<['message', 'media']> &
