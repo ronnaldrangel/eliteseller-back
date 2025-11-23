@@ -110,7 +110,7 @@
       "default": "Te conectaré con un agente humano para brindarte más ayuda."
     },
     "catalog_message": {
-      "type": "string"
+      "type": "text"
     },
     "faqs": {
       "type": "relation",

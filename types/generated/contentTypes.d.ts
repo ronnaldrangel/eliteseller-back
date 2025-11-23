@@ -544,7 +544,7 @@ export interface ApiChatbotChatbot extends Struct.CollectionTypeSchema {
       Schema.Attribute.DefaultTo<'\uD83D\uDE42\uD83D\uDC4D\uD83C\uDF89'>;
     ban_words: Schema.Attribute.JSON;
     calendars: Schema.Attribute.Relation<'oneToMany', 'api::calendar.calendar'>;
-    catalog_message: Schema.Attribute.String;
+    catalog_message: Schema.Attribute.Text;
     chatbot_name: Schema.Attribute.String &
       Schema.Attribute.DefaultTo<'EliteSeller'>;
     company_description: Schema.Attribute.Text &
