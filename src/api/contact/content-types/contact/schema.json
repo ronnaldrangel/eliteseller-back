@@ -28,6 +28,9 @@
       "relation": "manyToOne",
       "target": "api::chatbot.chatbot",
       "inversedBy": "contacts"
+    },
+    "contact_id": {
+      "type": "integer"
     }
   }
 }

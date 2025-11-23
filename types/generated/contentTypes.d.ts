@@ -642,6 +642,7 @@ export interface ApiContactContact extends Struct.CollectionTypeSchema {
   };
   attributes: {
     chatbot: Schema.Attribute.Relation<'manyToOne', 'api::chatbot.chatbot'>;
+    contact_id: Schema.Attribute.Integer;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
