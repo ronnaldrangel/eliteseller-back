@@ -544,7 +544,8 @@ export interface ApiChatbotChatbot extends Struct.CollectionTypeSchema {
       Schema.Attribute.DefaultTo<'\uD83D\uDE42\uD83D\uDC4D\uD83C\uDF89'>;
     ban_words: Schema.Attribute.JSON;
     calendars: Schema.Attribute.Relation<'oneToMany', 'api::calendar.calendar'>;
-    catalog_message: Schema.Attribute.Text;
+    catalog_message: Schema.Attribute.Text &
+      Schema.Attribute.DefaultTo<'\u00A1Hola! Soy EliteSeller. \u00BFEn qu\u00E9 puedo ayudarte hoy?'>;
     chatbot_name: Schema.Attribute.String &
       Schema.Attribute.DefaultTo<'EliteSeller'>;
     company_description: Schema.Attribute.Text &
@@ -647,7 +648,7 @@ export interface ApiContactContact extends Struct.CollectionTypeSchema {
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     customer_phone_name: Schema.Attribute.String;
-    fb_ads_id: Schema.Attribute.Integer;
+    fb_ads_id: Schema.Attribute.String;
     hotness: Schema.Attribute.String;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<

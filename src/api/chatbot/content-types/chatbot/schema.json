@@ -110,7 +110,8 @@
       "default": "Te conectaré con un agente humano para brindarte más ayuda."
     },
     "catalog_message": {
-      "type": "text"
+      "type": "text",
+      "default": "¡Hola! Soy EliteSeller. ¿En qué puedo ayudarte hoy?"
     },
     "faqs": {
       "type": "relation",
