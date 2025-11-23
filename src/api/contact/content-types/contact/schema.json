@@ -31,6 +31,9 @@
     },
     "contact_id": {
       "type": "integer"
+    },
+    "fb_ads_id": {
+      "type": "integer"
     }
   }
 }

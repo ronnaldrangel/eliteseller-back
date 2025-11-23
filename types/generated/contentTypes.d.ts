@@ -647,6 +647,7 @@ export interface ApiContactContact extends Struct.CollectionTypeSchema {
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     customer_phone_name: Schema.Attribute.String;
+    fb_ads_id: Schema.Attribute.Integer;
     hotness: Schema.Attribute.String;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
