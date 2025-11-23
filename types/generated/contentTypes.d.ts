@@ -926,7 +926,7 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
       ['USD', 'EUR', 'GBP', 'MXN', 'COP', 'CLP', 'ARS', 'PEN', 'BRL']
     > &
       Schema.Attribute.DefaultTo<'USD'>;
-    description_complete: Schema.Attribute.String;
+    description_complete: Schema.Attribute.Text;
     description_wsp: Schema.Attribute.Text;
     is_auto_delivery: Schema.Attribute.Boolean &
       Schema.Attribute.DefaultTo<true>;
