@@ -37,6 +37,9 @@
       "relation": "oneToMany",
       "target": "api::subscription.subscription",
       "mappedBy": "plan"
+    },
+    "trial_price": {
+      "type": "decimal"
     }
   }
 }

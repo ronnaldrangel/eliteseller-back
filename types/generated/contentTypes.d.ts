@@ -832,6 +832,7 @@ export interface ApiPlanPlan extends Struct.CollectionTypeSchema {
       'oneToMany',
       'api::subscription.subscription'
     >;
+    trial_price: Schema.Attribute.Decimal;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
