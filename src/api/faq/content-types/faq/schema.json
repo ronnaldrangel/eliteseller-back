@@ -12,10 +12,10 @@
   "pluginOptions": {},
   "attributes": {
     "question": {
-      "type": "string"
+      "type": "text"
     },
     "response": {
-      "type": "string"
+      "type": "text"
     },
     "category": {
       "type": "enumeration",
