@@ -40,6 +40,10 @@
     },
     "trial_price": {
       "type": "decimal"
+    },
+    "has_trial": {
+      "type": "boolean",
+      "default": false
     }
   }
 }
