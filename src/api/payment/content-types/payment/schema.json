@@ -24,6 +24,9 @@
     "instructions": {
       "type": "string"
     },
+    "holder": {
+      "type": "string"
+    },
     "chatbot": {
       "type": "relation",
       "relation": "manyToOne",
