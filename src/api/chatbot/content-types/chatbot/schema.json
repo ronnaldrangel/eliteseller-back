@@ -199,6 +199,12 @@
     "isWhatsAppConnected": {
       "type": "boolean",
       "default": false
+    },
+    "remarketing_message": {
+      "type": "text"
+    },
+    "cooldown_minutes": {
+      "type": "integer"
     }
   }
 }
