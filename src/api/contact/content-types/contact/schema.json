@@ -23,6 +23,9 @@
     "sale_status_flag": {
       "type": "boolean"
     },
+    "last_message": {
+      "type": "date"
+    },
     "chatbot": {
       "type": "relation",
       "relation": "manyToOne",
