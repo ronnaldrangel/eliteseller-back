@@ -1,0 +1,24 @@
+{
+  "kind": "collectionType",
+  "collectionName": "remarketings",
+  "info": {
+    "singularName": "remarketing",
+    "pluralName": "remarketings",
+    "displayName": "Remarketing"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "content": {
+      "type": "text"
+    },
+    "chatbot": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::chatbot.chatbot",
+      "inversedBy": "remarketings"
+    }
+  }
+}

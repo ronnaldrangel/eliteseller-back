@@ -201,8 +201,11 @@
       "type": "boolean",
       "default": false
     },
-    "remarketing_message": {
-      "type": "text"
+    "remarketings": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::remarketing.remarketing",
+      "mappedBy": "chatbot"
     },
     "cooldown_minutes": {
       "type": "integer"

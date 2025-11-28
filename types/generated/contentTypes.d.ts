@@ -540,6 +540,8 @@ export interface ApiChatbotChatbot extends Struct.CollectionTypeSchema {
   attributes: {
     access_token: Schema.Attribute.String;
     account: Schema.Attribute.Relation<'oneToOne', 'api::account.account'>;
+    auto_assignment: Schema.Attribute.Boolean &
+      Schema.Attribute.DefaultTo<true>;
     available_emojis: Schema.Attribute.String &
       Schema.Attribute.DefaultTo<'\uD83D\uDE42\uD83D\uDC4D\uD83C\uDF89'>;
     ban_words: Schema.Attribute.JSON;
@@ -579,8 +581,6 @@ export interface ApiChatbotChatbot extends Struct.CollectionTypeSchema {
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     custom: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
-    auto_assignment: Schema.Attribute.Boolean &
-      Schema.Attribute.DefaultTo<true>;
     emoji: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<true>;
     faqs: Schema.Attribute.Relation<'oneToMany', 'api::faq.faq'>;
     gender: Schema.Attribute.Enumeration<['male', 'female', 'neutral']> &
@@ -602,7 +602,10 @@ export interface ApiChatbotChatbot extends Struct.CollectionTypeSchema {
     payments: Schema.Attribute.Relation<'oneToMany', 'api::payment.payment'>;
     products: Schema.Attribute.Relation<'oneToMany', 'api::product.product'>;
     publishedAt: Schema.Attribute.DateTime;
-    remarketing_message: Schema.Attribute.Text;
+    remarketings: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::remarketing.remarketing'
+    >;
     response_length: Schema.Attribute.Enumeration<
       ['Very concise', 'Concise', 'Balance', 'Detailed', 'Very detailed']
     > &
@@ -963,6 +966,35 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
       'oneToMany',
       'api::product-variant.product-variant'
     >;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiRemarketingRemarketing extends Struct.CollectionTypeSchema {
+  collectionName: 'remarketings';
+  info: {
+    displayName: 'Remarketing';
+    pluralName: 'remarketings';
+    singularName: 'remarketing';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    chatbot: Schema.Attribute.Relation<'manyToOne', 'api::chatbot.chatbot'>;
+    content: Schema.Attribute.Text;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::remarketing.remarketing'
+    > &
+      Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -1686,6 +1718,7 @@ declare module '@strapi/strapi' {
       'api::product-option.product-option': ApiProductOptionProductOption;
       'api::product-variant.product-variant': ApiProductVariantProductVariant;
       'api::product.product': ApiProductProduct;
+      'api::remarketing.remarketing': ApiRemarketingRemarketing;
       'api::subscription.subscription': ApiSubscriptionSubscription;
       'api::support.support': ApiSupportSupport;
       'api::tag.tag': ApiTagTag;
