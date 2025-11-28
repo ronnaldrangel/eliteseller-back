@@ -193,9 +193,6 @@
     "gpt_apikey": {
       "type": "string"
     },
-    "remarketing": {
-      "type": "text"
-    },
     "isWhatsAppConnected": {
       "type": "boolean",
       "default": false

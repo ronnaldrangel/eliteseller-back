@@ -24,7 +24,7 @@
       "type": "boolean"
     },
     "last_message": {
-      "type": "date"
+      "type": "datetime"
     },
     "chatbot": {
       "type": "relation",

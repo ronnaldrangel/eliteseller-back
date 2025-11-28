@@ -605,7 +605,6 @@ export interface ApiChatbotChatbot extends Struct.CollectionTypeSchema {
       ['Very concise', 'Concise', 'Balance', 'Detailed', 'Very detailed']
     > &
       Schema.Attribute.DefaultTo<'Balance'>;
-    remarketing: Schema.Attribute.Text;
     signs: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<true>;
     slug: Schema.Attribute.String;
     style_communication: Schema.Attribute.String &
@@ -651,7 +650,7 @@ export interface ApiContactContact extends Struct.CollectionTypeSchema {
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     customer_phone_name: Schema.Attribute.String;
-    last_message: Schema.Attribute.Date;
+    last_message: Schema.Attribute.DateTime;
     fb_ads_id: Schema.Attribute.String;
     hotness: Schema.Attribute.String;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
