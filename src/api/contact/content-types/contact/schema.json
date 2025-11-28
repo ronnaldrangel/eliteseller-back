@@ -21,7 +21,8 @@
       "type": "string"
     },
     "sale_status_flag": {
-      "type": "boolean"
+      "type": "boolean",
+      "default": false
     },
     "last_message": {
       "type": "datetime"
@@ -36,6 +37,9 @@
       "type": "integer"
     },
     "fb_ads_id": {
+      "type": "string"
+    },
+    "conversation_id": {
       "type": "string"
     }
   }

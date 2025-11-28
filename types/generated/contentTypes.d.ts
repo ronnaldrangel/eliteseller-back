@@ -646,13 +646,14 @@ export interface ApiContactContact extends Struct.CollectionTypeSchema {
   attributes: {
     chatbot: Schema.Attribute.Relation<'manyToOne', 'api::chatbot.chatbot'>;
     contact_id: Schema.Attribute.Integer;
+    conversation_id: Schema.Attribute.String;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     customer_phone_name: Schema.Attribute.String;
-    last_message: Schema.Attribute.DateTime;
     fb_ads_id: Schema.Attribute.String;
     hotness: Schema.Attribute.String;
+    last_message: Schema.Attribute.DateTime;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -661,7 +662,8 @@ export interface ApiContactContact extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     name: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
-    sale_status_flag: Schema.Attribute.Boolean;
+    sale_status_flag: Schema.Attribute.Boolean &
+      Schema.Attribute.DefaultTo<false>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
