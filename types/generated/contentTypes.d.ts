@@ -579,6 +579,8 @@ export interface ApiChatbotChatbot extends Struct.CollectionTypeSchema {
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     custom: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+    auto_assignment: Schema.Attribute.Boolean &
+      Schema.Attribute.DefaultTo<true>;
     emoji: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<true>;
     faqs: Schema.Attribute.Relation<'oneToMany', 'api::faq.faq'>;
     gender: Schema.Attribute.Enumeration<['male', 'female', 'neutral']> &
