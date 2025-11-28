@@ -19,6 +19,9 @@
       "relation": "manyToOne",
       "target": "api::chatbot.chatbot",
       "inversedBy": "remarketings"
+    },
+    "hotness_message": {
+      "type": "string"
     }
   }
 }
