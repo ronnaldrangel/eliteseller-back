@@ -125,6 +125,12 @@
       "target": "api::payment.payment",
       "mappedBy": "chatbot"
     },
+    "reviews": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::review.review",
+      "mappedBy": "chatbot"
+    },
     "products": {
       "type": "relation",
       "relation": "oneToMany",

@@ -1,0 +1,41 @@
+{
+  "kind": "collectionType",
+  "collectionName": "reviews",
+  "info": {
+    "singularName": "review",
+    "pluralName": "reviews",
+    "displayName": "Review",
+    "description": "Reseñas / confiabilidad del chatbot"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "description": {
+      "type": "text",
+      "required": true
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "envio_seguro",
+        "cliente",
+        "confiabilidad",
+        "otro"
+      ],
+      "default": "confiabilidad"
+    },
+    "images": {
+      "type": "media",
+      "multiple": true,
+      "required": false
+    },
+    "chatbot": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::chatbot.chatbot",
+      "inversedBy": "reviews"
+    }
+  }
+}
