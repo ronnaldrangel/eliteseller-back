@@ -41,6 +41,10 @@
     },
     "conversation_id": {
       "type": "string"
+    },
+    "remarketing_count": {
+      "type": "integer",
+      "default": 0
     }
   }
 }

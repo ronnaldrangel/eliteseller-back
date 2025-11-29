@@ -547,7 +547,7 @@ export interface ApiChatbotChatbot extends Struct.CollectionTypeSchema {
     ban_words: Schema.Attribute.JSON;
     calendars: Schema.Attribute.Relation<'oneToMany', 'api::calendar.calendar'>;
     catalog_message: Schema.Attribute.Text &
-      Schema.Attribute.DefaultTo<'\u00A1Hola! Soy EliteSeller. \u00BFEn qu\u00E9 puedo ayudarte hoy?'>;
+      Schema.Attribute.DefaultTo<'Hola \uD83D\uDC4B \u00A1Gracias por tu inter\u00E9s! Para poder enviarte el cat\u00E1logo adecuado y brindarte la mejor informaci\u00F3n, \u00BFpodr\u00EDas compartir conmigo un poco m\u00E1s de detalle sobre lo que buscas?'>;
     chatbot_name: Schema.Attribute.String &
       Schema.Attribute.DefaultTo<'EliteSeller'>;
     company_description: Schema.Attribute.Text &
@@ -585,8 +585,6 @@ export interface ApiChatbotChatbot extends Struct.CollectionTypeSchema {
     faqs: Schema.Attribute.Relation<'oneToMany', 'api::faq.faq'>;
     gender: Schema.Attribute.Enumeration<['male', 'female', 'neutral']> &
       Schema.Attribute.DefaultTo<'male'>;
-    gpt_apikey: Schema.Attribute.String;
-    gpt_type: Schema.Attribute.String;
     human_derivation_message: Schema.Attribute.Text &
       Schema.Attribute.DefaultTo<'Te conectar\u00E9 con un agente humano para brindarte m\u00E1s ayuda.'>;
     instructions: Schema.Attribute.String &
@@ -602,6 +600,7 @@ export interface ApiChatbotChatbot extends Struct.CollectionTypeSchema {
     payments: Schema.Attribute.Relation<'oneToMany', 'api::payment.payment'>;
     products: Schema.Attribute.Relation<'oneToMany', 'api::product.product'>;
     publishedAt: Schema.Attribute.DateTime;
+    rag: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios', true>;
     remarketings: Schema.Attribute.Relation<
       'oneToMany',
       'api::remarketing.remarketing'
@@ -667,6 +666,7 @@ export interface ApiContactContact extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     name: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
+    remarketing_count: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<0>;
     sale_status_flag: Schema.Attribute.Boolean &
       Schema.Attribute.DefaultTo<false>;
     updatedAt: Schema.Attribute.DateTime;
