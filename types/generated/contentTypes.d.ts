@@ -667,6 +667,7 @@ export interface ApiContactContact extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     name: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
+    remarketing_count: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<0>;
     sale_status_flag: Schema.Attribute.Boolean &
       Schema.Attribute.DefaultTo<false>;
     updatedAt: Schema.Attribute.DateTime;
