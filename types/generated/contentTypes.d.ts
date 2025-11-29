@@ -609,6 +609,7 @@ export interface ApiChatbotChatbot extends Struct.CollectionTypeSchema {
       ['Very concise', 'Concise', 'Balance', 'Detailed', 'Very detailed']
     > &
       Schema.Attribute.DefaultTo<'Balance'>;
+    reviews: Schema.Attribute.Relation<'oneToMany', 'api::review.review'>;
     signs: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<true>;
     slug: Schema.Attribute.String;
     style_communication: Schema.Attribute.String &
@@ -997,6 +998,41 @@ export interface ApiRemarketingRemarketing extends Struct.CollectionTypeSchema {
     > &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiReviewReview extends Struct.CollectionTypeSchema {
+  collectionName: 'reviews';
+  info: {
+    description: 'Rese\u00F1as / confiabilidad del chatbot';
+    displayName: 'Review';
+    pluralName: 'reviews';
+    singularName: 'review';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    chatbot: Schema.Attribute.Relation<'manyToOne', 'api::chatbot.chatbot'>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    description: Schema.Attribute.Text & Schema.Attribute.Required;
+    images: Schema.Attribute.Media<undefined, true>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::review.review'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    type: Schema.Attribute.Enumeration<
+      ['envio_seguro', 'cliente', 'confiabilidad', 'otro']
+    > &
+      Schema.Attribute.DefaultTo<'confiabilidad'>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1720,6 +1756,7 @@ declare module '@strapi/strapi' {
       'api::product-variant.product-variant': ApiProductVariantProductVariant;
       'api::product.product': ApiProductProduct;
       'api::remarketing.remarketing': ApiRemarketingRemarketing;
+      'api::review.review': ApiReviewReview;
       'api::subscription.subscription': ApiSubscriptionSubscription;
       'api::support.support': ApiSupportSupport;
       'api::tag.tag': ApiTagTag;
