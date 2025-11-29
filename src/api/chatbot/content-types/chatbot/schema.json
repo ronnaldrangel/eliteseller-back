@@ -111,7 +111,7 @@
     },
     "catalog_message": {
       "type": "text",
-      "default": "¡Hola! Soy EliteSeller. ¿En qué puedo ayudarte hoy?"
+      "default": "Hola 👋 ¡Gracias por tu interés! Para poder enviarte el catálogo adecuado y brindarte la mejor información, ¿podrías compartir conmigo un poco más de detalle sobre lo que buscas?"
     },
     "faqs": {
       "type": "relation",
@@ -191,12 +191,6 @@
       "target": "api::subscription.subscription",
       "inversedBy": "chatbot"
     },
-    "gpt_type": {
-      "type": "string"
-    },
-    "gpt_apikey": {
-      "type": "string"
-    },
     "isWhatsAppConnected": {
       "type": "boolean",
       "default": false
@@ -209,6 +203,16 @@
     },
     "cooldown_minutes": {
       "type": "integer"
+    },
+    "rag": {
+      "type": "media",
+      "multiple": true,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
     }
   }
 }
