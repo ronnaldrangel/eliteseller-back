@@ -623,7 +623,7 @@ export interface ApiChatbotChatbot extends Struct.CollectionTypeSchema {
     tags: Schema.Attribute.Relation<'oneToMany', 'api::tag.tag'>;
     target: Schema.Attribute.String &
       Schema.Attribute.DefaultTo<'broad consumer audience'>;
-    tokens_limits: Schema.Attribute.Integer;
+    tokens_remaining: Schema.Attribute.Integer;
     tokens_used: Schema.Attribute.Integer;
     triggers: Schema.Attribute.Relation<'oneToMany', 'api::trigger.trigger'>;
     updatedAt: Schema.Attribute.DateTime;

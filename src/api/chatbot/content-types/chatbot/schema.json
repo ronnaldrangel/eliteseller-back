@@ -182,7 +182,7 @@
     "tokens_used": {
       "type": "integer"
     },
-    "tokens_limits": {
+    "tokens_remaining": {
       "type": "integer"
     },
     "contacts": {
