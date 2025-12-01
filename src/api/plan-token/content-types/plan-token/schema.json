@@ -14,9 +14,6 @@
     "name": {
       "type": "string"
     },
-    "price": {
-      "type": "decimal"
-    },
     "tokens_amount": {
       "type": "biginteger"
     },
@@ -38,6 +35,9 @@
         "videos",
         "audios"
       ]
+    },
+    "features": {
+      "type": "json"
     }
   }
 }
