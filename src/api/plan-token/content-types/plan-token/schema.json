@@ -1,0 +1,43 @@
+{
+  "kind": "collectionType",
+  "collectionName": "plan_tokens",
+  "info": {
+    "singularName": "plan-token",
+    "pluralName": "plan-tokens",
+    "displayName": "Plan_token"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "price": {
+      "type": "decimal"
+    },
+    "tokens_amount": {
+      "type": "biginteger"
+    },
+    "tokens_bonus": {
+      "type": "biginteger"
+    },
+    "sale_price": {
+      "type": "decimal"
+    },
+    "regular_price": {
+      "type": "decimal"
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    }
+  }
+}

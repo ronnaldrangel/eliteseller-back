@@ -815,6 +815,40 @@ export interface ApiPaymentPayment extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiPlanTokenPlanToken extends Struct.CollectionTypeSchema {
+  collectionName: 'plan_tokens';
+  info: {
+    displayName: 'Plan_token';
+    pluralName: 'plan-tokens';
+    singularName: 'plan-token';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    image: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::plan-token.plan-token'
+    > &
+      Schema.Attribute.Private;
+    name: Schema.Attribute.String;
+    price: Schema.Attribute.Decimal;
+    publishedAt: Schema.Attribute.DateTime;
+    regular_price: Schema.Attribute.Decimal;
+    sale_price: Schema.Attribute.Decimal;
+    tokens_amount: Schema.Attribute.BigInteger;
+    tokens_bonus: Schema.Attribute.BigInteger;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiPlanPlan extends Struct.CollectionTypeSchema {
   collectionName: 'plans';
   info: {
@@ -1751,6 +1785,7 @@ declare module '@strapi/strapi' {
       'api::faq.faq': ApiFaqFaq;
       'api::inbox.inbox': ApiInboxInbox;
       'api::payment.payment': ApiPaymentPayment;
+      'api::plan-token.plan-token': ApiPlanTokenPlanToken;
       'api::plan.plan': ApiPlanPlan;
       'api::product-option.product-option': ApiProductOptionProductOption;
       'api::product-variant.product-variant': ApiProductVariantProductVariant;
