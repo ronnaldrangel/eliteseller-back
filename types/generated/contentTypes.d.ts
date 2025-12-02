@@ -1031,6 +1031,7 @@ export interface ApiRemarketingContentRemarketingContent
       'api::remarketing-content.remarketing-content'
     > &
       Schema.Attribute.Private;
+    media: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     order: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<0>;
     publishedAt: Schema.Attribute.DateTime;
     remarketing: Schema.Attribute.Relation<
