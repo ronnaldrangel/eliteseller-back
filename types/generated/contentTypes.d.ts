@@ -1009,6 +1009,40 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiRemarketingContentRemarketingContent
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'remarketing_contents';
+  info: {
+    displayName: 'Remarketing_Content';
+    pluralName: 'remarketing-contents';
+    singularName: 'remarketing-content';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    content: Schema.Attribute.Text;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::remarketing-content.remarketing-content'
+    > &
+      Schema.Attribute.Private;
+    order: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<0>;
+    publishedAt: Schema.Attribute.DateTime;
+    remarketing: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::remarketing.remarketing'
+    >;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiRemarketingRemarketing extends Struct.CollectionTypeSchema {
   collectionName: 'remarketings';
   info: {
@@ -1033,6 +1067,10 @@ export interface ApiRemarketingRemarketing extends Struct.CollectionTypeSchema {
     > &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
+    remarketing_contents: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::remarketing-content.remarketing-content'
+    >;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1791,6 +1829,7 @@ declare module '@strapi/strapi' {
       'api::product-option.product-option': ApiProductOptionProductOption;
       'api::product-variant.product-variant': ApiProductVariantProductVariant;
       'api::product.product': ApiProductProduct;
+      'api::remarketing-content.remarketing-content': ApiRemarketingContentRemarketingContent;
       'api::remarketing.remarketing': ApiRemarketingRemarketing;
       'api::review.review': ApiReviewReview;
       'api::subscription.subscription': ApiSubscriptionSubscription;

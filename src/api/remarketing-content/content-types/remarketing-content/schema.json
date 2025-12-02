@@ -1,0 +1,28 @@
+{
+  "kind": "collectionType",
+  "collectionName": "remarketing_contents",
+  "info": {
+    "singularName": "remarketing-content",
+    "pluralName": "remarketing-contents",
+    "displayName": "Remarketing_Content"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "content": {
+      "type": "text"
+    },
+    "remarketing": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::remarketing.remarketing",
+      "inversedBy": "remarketing_contents"
+    },
+    "order": {
+      "type": "integer",
+      "default": 0
+    }
+  }
+}

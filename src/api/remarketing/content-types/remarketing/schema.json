@@ -22,6 +22,12 @@
     },
     "hotness_message": {
       "type": "string"
+    },
+    "remarketing_contents": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::remarketing-content.remarketing-content",
+      "mappedBy": "remarketing"
     }
   }
 }
