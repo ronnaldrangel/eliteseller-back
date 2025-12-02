@@ -180,10 +180,10 @@
       "type": "string"
     },
     "tokens_used": {
-      "type": "integer"
+      "type": "biginteger"
     },
     "tokens_remaining": {
-      "type": "integer"
+      "type": "biginteger"
     },
     "contacts": {
       "type": "relation",

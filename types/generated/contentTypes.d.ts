@@ -623,8 +623,8 @@ export interface ApiChatbotChatbot extends Struct.CollectionTypeSchema {
     tags: Schema.Attribute.Relation<'oneToMany', 'api::tag.tag'>;
     target: Schema.Attribute.String &
       Schema.Attribute.DefaultTo<'broad consumer audience'>;
-    tokens_remaining: Schema.Attribute.Integer;
-    tokens_used: Schema.Attribute.Integer;
+    tokens_remaining: Schema.Attribute.BigInteger;
+    tokens_used: Schema.Attribute.BigInteger;
     triggers: Schema.Attribute.Relation<'oneToMany', 'api::trigger.trigger'>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -823,7 +823,7 @@ export interface ApiPlanTokenPlanToken extends Struct.CollectionTypeSchema {
     singularName: 'plan-token';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     createdAt: Schema.Attribute.DateTime;
