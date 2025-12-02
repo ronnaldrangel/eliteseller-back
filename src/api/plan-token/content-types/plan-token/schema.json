@@ -38,6 +38,9 @@
     },
     "features": {
       "type": "json"
+    },
+    "description": {
+      "type": "string"
     }
   }
 }
