@@ -33,6 +33,9 @@
         "videos",
         "audios"
       ]
+    },
+    "time_to_send": {
+      "type": "integer"
     }
   }
 }

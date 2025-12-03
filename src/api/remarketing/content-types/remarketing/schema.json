@@ -11,16 +11,13 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "content": {
-      "type": "text"
-    },
     "chatbot": {
       "type": "relation",
       "relation": "manyToOne",
       "target": "api::chatbot.chatbot",
       "inversedBy": "remarketings"
     },
-    "hotness_message": {
+    "hotness": {
       "type": "string"
     },
     "remarketing_contents": {

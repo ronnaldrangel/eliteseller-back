@@ -1038,6 +1038,7 @@ export interface ApiRemarketingContentRemarketingContent
       'manyToOne',
       'api::remarketing.remarketing'
     >;
+    time_to_send: Schema.Attribute.Integer;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1056,11 +1057,10 @@ export interface ApiRemarketingRemarketing extends Struct.CollectionTypeSchema {
   };
   attributes: {
     chatbot: Schema.Attribute.Relation<'manyToOne', 'api::chatbot.chatbot'>;
-    content: Schema.Attribute.Text;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    hotness_message: Schema.Attribute.String;
+    hotness: Schema.Attribute.String;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
