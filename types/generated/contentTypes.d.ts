@@ -638,6 +638,43 @@ export interface ApiChatbotChatbot extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiConfigAppConfigApp extends Struct.CollectionTypeSchema {
+  collectionName: 'config_apps';
+  info: {
+    displayName: 'ConfigApp';
+    pluralName: 'config-apps';
+    singularName: 'config-app';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    icon_dark: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    icon_light: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
+    isActive: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::config-app.config-app'
+    > &
+      Schema.Attribute.Private;
+    logo_dark: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    logo_light: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
+    publishedAt: Schema.Attribute.DateTime;
+    topbarContent: Schema.Attribute.JSON;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiContactContact extends Struct.CollectionTypeSchema {
   collectionName: 'contacts';
   info: {
@@ -1820,6 +1857,7 @@ declare module '@strapi/strapi' {
       'api::calendar.calendar': ApiCalendarCalendar;
       'api::card.card': ApiCardCard;
       'api::chatbot.chatbot': ApiChatbotChatbot;
+      'api::config-app.config-app': ApiConfigAppConfigApp;
       'api::contact.contact': ApiContactContact;
       'api::customer.customer': ApiCustomerCustomer;
       'api::faq.faq': ApiFaqFaq;
