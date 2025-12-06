@@ -44,6 +44,12 @@
     "has_trial": {
       "type": "boolean",
       "default": false
+    },
+    "tokens_add": {
+      "type": "biginteger"
+    },
+    "message_add": {
+      "type": "biginteger"
     }
   }
 }

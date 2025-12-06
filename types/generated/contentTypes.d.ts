@@ -907,6 +907,7 @@ export interface ApiPlanPlan extends Struct.CollectionTypeSchema {
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::plan.plan'> &
       Schema.Attribute.Private;
+    message_add: Schema.Attribute.BigInteger;
     name: Schema.Attribute.String;
     plan_id: Schema.Attribute.String;
     price: Schema.Attribute.Integer;
@@ -916,6 +917,7 @@ export interface ApiPlanPlan extends Struct.CollectionTypeSchema {
       'oneToMany',
       'api::subscription.subscription'
     >;
+    tokens_add: Schema.Attribute.BigInteger;
     trial_price: Schema.Attribute.Decimal;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
