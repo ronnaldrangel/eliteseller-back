@@ -557,7 +557,6 @@ export interface ApiChatbotChatbot extends Struct.CollectionTypeSchema {
     confirmation_message: Schema.Attribute.Text &
       Schema.Attribute.DefaultTo<'\u00A1Gracias por tu compra! Estamos procesando tu pedido y pronto recibir\u00E1s la confirmaci\u00F3n.'>;
     contacts: Schema.Attribute.Relation<'oneToMany', 'api::contact.contact'>;
-    cooldown_minutes: Schema.Attribute.Integer;
     country: Schema.Attribute.Enumeration<
       [
         'Mexico',
@@ -1018,7 +1017,7 @@ export interface ApiRemarketingContentRemarketingContent
     singularName: 'remarketing-content';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     content: Schema.Attribute.Text;

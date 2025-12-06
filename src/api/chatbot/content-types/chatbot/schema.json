@@ -207,9 +207,6 @@
       "target": "api::remarketing.remarketing",
       "mappedBy": "chatbot"
     },
-    "cooldown_minutes": {
-      "type": "integer"
-    },
     "rag": {
       "type": "media",
       "multiple": true,
